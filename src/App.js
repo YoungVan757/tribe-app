@@ -7,7 +7,6 @@ import Navbar from './components/Navbar';
 import Homepage from './views/Homepage/index';
 import Profile from './views/Profile/index';
 
-
 class App extends Component {
   render() {
     return (
@@ -22,7 +21,6 @@ class App extends Component {
               <Link to="/profile/van">Van's Profile</Link>
             </li>
           </ul>
-
           <Route exact path="/" component={Homepage} />
           <Route exact path="/profile/:username" component={Profile} />
         </Router>

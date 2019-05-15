@@ -9,6 +9,7 @@ export default class Profile extends Component {
   }
 
   componentDidMount() {
+    console.log("profile props", this.props)
     this.setProfileName(this.props.match.params['username']);
   }
 
