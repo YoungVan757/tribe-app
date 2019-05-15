@@ -16,9 +16,10 @@ export default class Button extends Component {
 
   render() {
     return (
-      <button className="button" onClick={() => this.incrementCounter()}>
+      <button className="board__post">
         {this.props.title} {this.state.count}
       </button>
+      
     );
   }
 }

@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-
-import Button from './components/Button';
-import Input from './components/Input';
+import Profile from './components/Profile';
+import Tribe from './components/Tribe';
+import Board from './components/Board';
+import Navbar from './components/Navbar'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Input placeholder="Your email" />
-        <Input placeholder="Hi" />
-        <Input placeholder="Phone" />
-        <Button title="Submit" />
+        <Navbar />
+        <Profile />
+        <Tribe />
+        <Board />
       </div>
     );
   }
