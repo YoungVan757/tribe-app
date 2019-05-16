@@ -12,7 +12,7 @@ import Messages from './views/Messages/index';
 import Settings from './views/Settings/index';
 import Signup from './views/Signup/index';
 import Tribes from './views/Tribes/index';
-s
+
 class App extends Component {
   render() {
     return (
