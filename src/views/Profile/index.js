@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Hero from '../../components/Hero'
+import ProfileImg from '../../components/ProfileImg'
 
 export default class Profile extends Component {
   constructor(props) {
@@ -24,6 +26,16 @@ export default class Profile extends Component {
   }
 
   render() {
-    return <div>This is the profile of {this.state.username}</div>;
+    return <div>This is the profile of {this.state.username}
+    
+            <div className="profile">
+                <Hero />
+                <ProfileImg />
+            </div>
+        );
+    }
+}
+
+    </div>;
   }
 }

@@ -15,11 +15,9 @@ export default class FormField extends Component {
     console.log(this.props.myFriends);
 
     return (
-      <div className="form-field">
+      <div className="form-field" style={{ borderColor: this.props.borderColor}}>
         <label style={{ color: this.props.color }}>{this.props.title}</label>
         <input type={this.props.inputType} />
-
-        {this.renderMyFriends()}
       </div>
     );
   }

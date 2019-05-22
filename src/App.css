@@ -1,3 +1,16 @@
+.container {
+  padding: 1%;
+  font-display: Helvetica;
+}
+
+.backyard {
+  height: 100vh;
+  width: 100%;
+  padding-top: 2%;
+  background-position: center;
+  background-size: cover;
+  background-image: url('https://github.com/YoungVan757/portfolio/blob/master/img/backyard%20copy.jpeg?raw=true');
+}
 
 .navbar {
   display: flex;
@@ -6,9 +19,24 @@
   align-items: center;
 }
 
-.heading {
+.homepage__heading {
   color: blue;
-  font-size: 40px;
+  font-size: 120px;
+  font-weight: bold;
+  border: 10px solid blue;
+  background-color: white;
+  padding-left: 1%;
+  padding-right: 1%;
+}
+
+.homepage__or {
+  color: darkorange;
+  font-size: 60px;
+  font-weight: bold;
+  border: 10px solid darkorange;
+  background-color: white;
+  padding-left: 1%;
+  padding-right: 1%;
 }
 
 .profile {
@@ -149,4 +177,98 @@
   color: slateblue;
   border: 10px solid darkgreen;
   margin: 2%;
+}
+
+.flex__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-field {
+  background-color: white;
+  border: 10px solid;
+  margin: 1%;
+  padding: 10px;
+  font-family: Helvetica;
+  font-weight: bold;
+  font-size: 45px;
+  text-align: center;
+}
+
+.form-field input {
+  width: 92%;
+  align-content: center;
+  border: 10px solid;
+}
+
+.form-field label {
+  font-weight: bold;
+  
+}
+
+.heading {
+  background-color: white;
+  border: 10px solid;
+  font-family: Helvetica;
+  font-size: 120px;
+  text-align: center;
+  padding: 1%;
+  font-weight: bold;
+}
+
+.button {
+  font-size: 60px;
+  font-weight: bold;
+  margin: 1%;
+  border: 10px solid;
+}
+
+.explore__container {
+  display: flex;
+  flex-direction: column;
+  font-size: 14.1vh;
+  text-align: right;
+}
+
+.art {
+  background-color: blue;
+  width: 100%;
+  text-decoration: none;
+  color: black;
+}
+
+.sports {
+  background-color: gold;
+  width: 100%;
+  text-decoration: none;
+  color: black;
+}
+
+.politics {
+  background-color: firebrick;
+  width: 100%;
+  text-decoration: none;
+  color: black;
+}
+
+.geo {
+  background-color: darkgreen;
+  width: 100%;
+  text-decoration: none;
+  color: black;
+}
+
+.nature {
+  background-color: darkorange;
+  width: 100%;
+  text-decoration: none;
+  color: black;
+}
+
+.manu {
+  background-color: slateblue;
+  width: 100%;
+  text-decoration: none;
+  color: black;
 }
