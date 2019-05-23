@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './App.css';
 
-
 import Navbar from './components/Navbar';
 import Homepage from './views/Homepage/index';
 import Profile from './views/Profile/index';
 import Categories from './views/Categories/index';
+import Category from './views/Category/index';
 import Members from './views/Members/index';
 import Messages from './views/Messages/index';
 import Settings from './views/Settings/index';
@@ -45,9 +45,11 @@ class App extends Component {
               <Link to="/tribes">Tribes</Link>
             </li>
           </ul>
+
           <Route exact path="/" component={Homepage} />
           <Route exact path="/profile/:username" component={Profile} />
           <Route exact path="/categories" component={Categories} />
+          <Route exact path="/category/:categoryName" component={Category} />
           <Route exact path="/members" component={Members} />
           <Route exact path="/messages" component={Messages} />
           <Route exact path="/settings" component={Settings} />

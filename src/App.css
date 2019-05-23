@@ -231,11 +231,35 @@
   text-align: right;
 }
 
-.art {
-  background-color: blue;
+
+/* MARGINS */
+.mt-small {
+  margin-top: 4px;
+}
+
+.mt-large {
+  margin-top: 12px;
+}
+
+/* MARGINS */
+
+.mt-small {
+  margin-top: 4px;
+}
+
+.mt-large {
+  margin-top: 12px;
+}
+
+.category-item {
   width: 100%;
   text-decoration: none;
   color: black;
+}
+
+
+.bg--blue {
+  background-color: blue;
 }
 
 .sports {
