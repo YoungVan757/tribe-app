@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Hero from '../../components/Hero'
 import ProfileImg from '../../components/ProfileImg'
+import Tribe from '../../components/Tribe'
 
 export default class Profile extends Component {
   constructor(props) {
@@ -31,6 +32,7 @@ export default class Profile extends Component {
             <div className="profile">
                 <Hero />
                 <ProfileImg />
+                <Tribe />
             </div>
         );
     }
