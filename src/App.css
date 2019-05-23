@@ -21,7 +21,7 @@
 
 .homepage__heading {
   color: blue;
-  font-size: 120px;
+  font-size: 100px;
   font-weight: bold;
   border: 10px solid blue;
   background-color: white;
@@ -30,13 +30,36 @@
 }
 
 .homepage__or {
-  color: darkorange;
-  font-size: 60px;
+  color: black;
+  font-size: 50px;
   font-weight: bold;
   border: 10px solid darkorange;
   background-color: white;
   padding-left: 1%;
   padding-right: 1%;
+}
+
+.login__link {
+  font-size: 50px;
+  font-weight: bold;
+  padding: 1%;
+  margin: 1%;
+  border: 10px solid darkgreen;
+  color: black;
+  background-color: white;
+  text-decoration: none;
+}
+
+.signup__link {
+  font-size: 50px;
+  font-weight: bold;
+  padding: 1%;
+  margin: 1%;
+  border: 10px solid slateblue;
+  color: black;
+  background-color: white;
+  text-decoration: none;
+  
 }
 
 .profile {
@@ -295,4 +318,62 @@
   width: 100%;
   text-decoration: none;
   color: black;
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100vh;
+  width: 100%;
+  padding-top: 2%;
+  background-position: center;
+  background-size: cover;
+  background-image: url('https://github.com/YoungVan757/portfolio/blob/master/img/backyard%20copy.jpeg?raw=true');
+}
+
+.blue {
+  font-size: 110px;
+  text-align: center;
+  color: blue;
+}
+
+.yellow {
+  font-size: 100px;
+  text-align: center;
+  color: gold;
+  margin: 0px;
+  text-decoration: none;
+}
+
+.red {
+  font-size: 100px;
+  text-align: center;
+  color: firebrick;
+  margin: 0px;
+}
+
+.green {
+  font-size: 100px;
+  text-align: center;
+  color: darkgreen;
+  text-decoration: none;
+  margin: 0px;
+}
+
+.orange {
+  font-size: 100px;
+  text-align: center;
+  color: darkorange;
+  margin: 0px;
+  text-decoration: none;
+}
+
+.purple {
+  font-size: 100px;
+  text-align: center;
+  color: slateblue;
+  text-decoration: none;
+  margin: 0px;
 }

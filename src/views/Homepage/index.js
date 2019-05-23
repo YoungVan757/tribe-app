@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-
+import { Link } from 'react-router-dom';
 import FormField from '../../components/FormField';
-import Button from '../../components/Button';
 
 export default class Homepage extends Component {
   render() {
@@ -22,12 +21,16 @@ export default class Homepage extends Component {
                 color="firebrick"
                 borderColor="firebrick"
               />
-            
-              <Button title="Log In" color="darkgreen"/>
+            <Link to="/profile/index" className="login__link">
+            Log In
+          </Link>
 
               <div className="homepage__or"> or</div>
 
-              <Button title="Sign Up" color="slateblue"/>
+              <Link to="/signup" className="signup__link">
+            Sign Up
+          </Link>
+
           </div>
         </div>
       </div>

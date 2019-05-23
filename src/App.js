@@ -7,11 +7,15 @@ import Homepage from './views/Homepage/index';
 import Profile from './views/Profile/index';
 import Categories from './views/Categories/index';
 import Category from './views/Category/index';
-import Members from './views/Members/index';
+import Message from './views/Message/index';
 import Messages from './views/Messages/index';
 import Settings from './views/Settings/index';
 import Signup from './views/Signup/index';
 import Tribes from './views/Tribes/index';
+import About from './views/About/index';
+import Art from './views/Art/index';
+import Visual from './views/Art/Visual/index';
+
 
 class App extends Component {
   render() {
@@ -30,7 +34,7 @@ class App extends Component {
               <Link to="/categories">Catagories</Link>
             </li>
             <li>
-              <Link to="/members">Members</Link>
+              <Link to="/message">Message</Link>
             </li>
             <li>
               <Link to="/messages">Messages</Link>
@@ -50,11 +54,14 @@ class App extends Component {
           <Route exact path="/profile/:username" component={Profile} />
           <Route exact path="/categories" component={Categories} />
           <Route exact path="/category/:categoryName" component={Category} />
-          <Route exact path="/members" component={Members} />
+          <Route exact path="/art" component={Art} />
+          <Route exact path="/message" component={Message} />
           <Route exact path="/messages" component={Messages} />
           <Route exact path="/settings" component={Settings} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/tribes" component={Tribes} />
+          <Route exact path="/about" component={About} />
+          <Route exact path="/art/visual" component={Visual} />
         </Router>
       </div>
     );

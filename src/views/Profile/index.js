@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Hero from '../../components/Hero'
-import ProfileImg from '../../components/ProfileImg'
-import Tribe from '../../components/Tribe'
+import Hero from '../../components/Hero';
+import ProfileImg from '../../components/ProfileImg';
+import Tribe from '../../components/Tribe';
+import Board from '../../components/Board';
 
 export default class Profile extends Component {
   constructor(props) {
@@ -28,15 +29,15 @@ export default class Profile extends Component {
 
   render() {
     return <div>This is the profile of {this.state.username}
-    
+    <div className="container">
             <div className="profile">
                 <Hero />
                 <ProfileImg />
-                <Tribe />
             </div>
-        );
-    }
-}
+                <Tribe />
+                <Board />
+        
+</div>
 
     </div>;
   }

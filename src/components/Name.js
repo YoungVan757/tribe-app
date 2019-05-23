@@ -4,7 +4,7 @@ export default class Name extends Component {
     render() {
         return (
             <div className="name">
-            Lil Uzi vert
+            Lil Uzi Vert
             </div>
         );
     }
