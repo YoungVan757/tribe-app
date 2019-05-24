@@ -377,3 +377,77 @@
   text-decoration: none;
   margin: 0px;
 }
+
+.message__navbar {
+  padding: 1%;
+  display: flex;
+  justify-content: space-between;
+  height: 7vh;
+}
+
+.message__body {
+  display: flex;
+}
+
+.message__textboxes {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 75%;
+}
+
+
+
+.message__line {
+  height: 10px;
+  width: 100%;
+  background-color: firebrick;
+}
+
+.message__read {
+  border-top: 10px solid gold;
+  border-left: 10px solid gold;
+  border-right: 10px solid gold;
+  margin-left: 5%;
+  height: 40vh;
+}
+
+.message__write {
+  border-bottom: 10px solid darkgreen;
+  border-left: 10px solid darkgreen;
+  border-right: 10px solid darkgreen;
+  margin-left: 5%;
+  height: 40vh;
+}
+
+.message__header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border-bottom: 10px solid darkorange;
+  border-top: 10px solid darkorange;
+  border-right: 10px solid darkorange;
+  width: 20%;
+}
+
+.message__header--info {
+  font-size: 32px;
+  margin: 6%;
+}
+
+.message__header--button {
+  background-color: slateblue;
+}
+
+.message__button {
+  display: flex;
+  justify-content: center;
+}
+
+.message__new{
+  border: 10px solid;
+  font-size: 24px;
+  align-self: center;
+  margin: 2%;
+  font-weight: bold;
+}
