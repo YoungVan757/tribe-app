@@ -6,6 +6,7 @@ export default class Categories extends Component {
     return (
       <div>
         <div className="explore__container">
+          <h2>Catagories</h2>
           <Link to="/category/art" className="category-item blue">
             Art
           </Link>

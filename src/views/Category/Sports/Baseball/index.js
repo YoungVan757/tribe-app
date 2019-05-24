@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 
 export default class Baseball extends Component {
   render() {
-    return <div>
-    Baseball<br></br>
-    <Link to="/category/sports">Back</Link>
-    </div>;
+    return <div className="explore__container">
+    <h2>Baseball</h2>
+    <Link to="/category/sports/baseball/baseball-team" className="category-item blue">Team</Link>
+    <Link to="/category/sports/baseball/baseball-athlete" className="category-item yellow">Athlete</Link>
+    <Link to="/category/sports/" className="category-item red">Back</Link></div>;
   }
 }
