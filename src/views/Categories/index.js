@@ -6,22 +6,22 @@ export default class Categories extends Component {
     return (
       <div>
         <div className="explore__container">
-          <Link to="/category/art" className="category-item bg--blue">
+          <Link to="/category/art" className="category-item blue">
             Art
           </Link>
-          <Link to="/category/sports" className="sports">
+          <Link to="/category/sports" className="category-item yellow">
             Sports
           </Link>
-          <Link to="/category/politics" className="politics">
+          <Link to="/category/politics" className="category-item red">
             Politics
           </Link>
-          <Link to="/category/geography" className="geo">
+          <Link to="/category/geography" className="category-item green">
             Geography
           </Link>
-          <Link to="/category/nature" className="nature">
+          <Link to="/category/nature" className="category-item orange">
             Nature
           </Link>
-          <Link to="/category/manufactured" className="manu">
+          <Link to="/category/manufactured" className="category-item purple">
             Manufactured
           </Link>
         </div>

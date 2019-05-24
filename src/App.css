@@ -281,43 +281,28 @@
 }
 
 
-.bg--blue {
+.blue {
   background-color: blue;
 }
 
-.sports {
+.yellow {
   background-color: gold;
-  width: 100%;
-  text-decoration: none;
-  color: black;
 }
 
-.politics {
+.red {
   background-color: firebrick;
-  width: 100%;
-  text-decoration: none;
-  color: black;
 }
 
-.geo {
+.green {
   background-color: darkgreen;
-  width: 100%;
-  text-decoration: none;
-  color: black;
 }
 
-.nature {
+.orange {
   background-color: darkorange;
-  width: 100%;
-  text-decoration: none;
-  color: black;
 }
 
-.manu {
+.purple {
   background-color: slateblue;
-  width: 100%;
-  text-decoration: none;
-  color: black;
 }
 
 .settings {
@@ -333,13 +318,13 @@
   background-image: url('https://github.com/YoungVan757/portfolio/blob/master/img/backyard%20copy.jpeg?raw=true');
 }
 
-.blue {
+.heading__blue {
   font-size: 110px;
   text-align: center;
   color: blue;
 }
 
-.yellow {
+.heading__yellow {
   font-size: 100px;
   text-align: center;
   color: gold;
@@ -347,14 +332,14 @@
   text-decoration: none;
 }
 
-.red {
+.r {
   font-size: 100px;
   text-align: center;
   color: firebrick;
   margin: 0px;
 }
 
-.green {
+.g {
   font-size: 100px;
   text-align: center;
   color: darkgreen;
@@ -362,7 +347,7 @@
   margin: 0px;
 }
 
-.orange {
+.heading__orange {
   font-size: 100px;
   text-align: center;
   color: darkorange;
@@ -370,7 +355,7 @@
   text-decoration: none;
 }
 
-.purple {
+.p {
   font-size: 100px;
   text-align: center;
   color: slateblue;

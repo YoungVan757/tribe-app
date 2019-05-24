@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 
 import Art from './Art';
 import Sports from './Sports';
+import Politics from './Politics';
+import Geography from './Geography';
+import Nature from './Nature';
+import Manufactured from './Manufactured';
 
 export default class Category extends Component {
   constructor(props) {
@@ -16,6 +20,22 @@ export default class Category extends Component {
 
     if (categoryName === 'sports') {
       return <Sports />;
+    }
+
+    if (categoryName === 'politics') {
+      return <Politics />;
+    }
+
+    if (categoryName === 'geography') {
+      return <Geography />;
+    }
+
+    if (categoryName === 'nature') {
+      return <Nature />;
+    }
+
+    if (categoryName === 'manufactured') {
+      return <Manufactured />;
     }
   }
 

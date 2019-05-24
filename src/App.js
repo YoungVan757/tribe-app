@@ -9,6 +9,7 @@ import Profile from './views/Profile/index';
 import Categories from './views/Categories/index';
 import Category from './views/Category/index';
 import Subcategory from './views/Category/Subcategory';
+import Subsubategory from './views/Category/Subsubcategory';
 
 import Message from './views/Message/index';
 import Messages from './views/Messages/index';
@@ -53,13 +54,12 @@ class App extends Component {
 
           <Route exact path="/" component={Homepage} />
           <Route exact path="/profile/:username" component={Profile} />
+
           <Route exact path="/categories" component={Categories} />
           <Route exact path="/category/:categoryName" component={Category} />
-          <Route
-            exact
-            path="/category/:categoryName/:subCategory"
-            component={Subcategory}
-          />
+          <Route exact path="/category/:categoryName/:subCategory" component={Subcategory} />
+          <Route exact path="/category/:categoryName/:subCategory/:subSubcategory" component={Subsubategory} />
+
           <Route exact path="/message" component={Message} />
           <Route exact path="/messages" component={Messages} />
           <Route exact path="/settings" component={Settings} />
