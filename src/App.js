@@ -10,6 +10,7 @@ import Categories from './views/Categories/index';
 import Category from './views/Category/index';
 import Subcategory from './views/Category/Subcategory';
 import Subsubategory from './views/Category/Subsubcategory';
+import Subsubsubategory from './views/Category/Subsubsubcategory';
 
 import Message from './views/Message/index';
 import Messages from './views/Messages/index';
@@ -59,6 +60,7 @@ class App extends Component {
           <Route exact path="/category/:categoryName" component={Category} />
           <Route exact path="/category/:categoryName/:subCategory" component={Subcategory} />
           <Route exact path="/category/:categoryName/:subCategory/:subSubcategory" component={Subsubategory} />
+          <Route exact path="/category/:categoryName/:subCategory/:subSubcategory/:subSubsubcategory" component={Subsubsubategory} />
 
           <Route exact path="/message" component={Message} />
           <Route exact path="/messages" component={Messages} />

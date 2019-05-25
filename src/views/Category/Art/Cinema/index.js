@@ -1,14 +1,24 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-export default class Visual extends Component {
+export default class Art extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   render() {
-    return <div className="explore__container">
-    <h2>Cinema</h2>
-    <Link to="/category/art/cinema/director" className="category-item blue">Director</Link>
-    <Link to="/category/art/cinema/film" className="category-item yellow">Film</Link>
-    <Link to="/category/art/cinema/series" className="category-item red">Series</Link>
-    <Link to="/category/art/cinema/actor" className="category-item green">Actor</Link>
-    <Link to="/category/art" className="category-item orange">Back</Link></div>;
+    return (
+      <div>
+        
+        <div className="explore__container">
+        <h2>Art</h2>
+        <Link to="/category/art/cinema/actor" className="category-item blue">Actor</Link>
+        <Link to="/category/art/cinema/director" className="category-item yellow">Director</Link>
+        <Link to="/category/art/cinema/film" className="category-item red">Film</Link>
+        <Link to="/category/art/cinema/series" className="category-item orange">Series</Link>
+        <Link to="/category/art" className="category-item green">Back</Link></div>
+      </div>
+    );
   }
 }

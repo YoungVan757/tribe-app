@@ -42,93 +42,93 @@ export default class Subcategory extends Component {
     this.state = {};
   }
 
-  renderSubCategoryDetails(categoryName) {
+  renderSubCategoryDetails(subCategory) {
 
     // ART 
 
-    if (categoryName === 'visual') {
+    if (subCategory === 'visual') {
       return <Visual />;
     }
 
-    if (categoryName === 'music') {
+    if (subCategory === 'music') {
       return <Music />;
     }
 
-    if (categoryName === 'cinema') {
+    if (subCategory === 'cinema') {
       return <Cinema />;
     }
 
-    if (categoryName === 'literature') {
+    if (subCategory === 'literature') {
       return <Literature />;
     }
 
-    if (categoryName === 'video-games') {
+    if (subCategory === 'video-games') {
       return <VideoGames />;
     }
 
     // SPORTS
 
-    if (categoryName === 'skateboarding') {
+    if (subCategory === 'skateboarding') {
       return <Skateboarding />;
     }
 
-    if (categoryName === 'american-football') {
+    if (subCategory === 'american-football') {
       return <AmericanFootball />;
     }
 
-    if (categoryName === 'basketball') {
+    if (subCategory === 'basketball') {
       return <Basketball />;
     }
 
-    if (categoryName === 'football') {
+    if (subCategory === 'football') {
       return <Football />;
     }
 
-    if (categoryName === 'baseball') {
+    if (subCategory === 'baseball') {
       return <Baseball />;
     }
 
     // Politics
 
-    if (categoryName === 'policountry') {
+    if (subCategory === 'policountry') {
       return <PoliCountry />;
     }
 
     // Geography
 
-    if (categoryName === 'geocountry') {
+    if (subCategory === 'geocountry') {
       return <GeoCountry />;
     }
 
     // Nature
 
-    if (categoryName === 'plant') {
+    if (subCategory === 'plant') {
       return <Plant />;
     }
 
-    if (categoryName === 'animal') {
+    if (subCategory === 'animal') {
       return <Animal />;
     }
 
-    if (categoryName === 'fungi') {
+    if (subCategory === 'fungi') {
       return <Fungi />;
     }
 
-    if (categoryName === 'insect') {
+    if (subCategory === 'insect') {
       return <Insect />;
     }
 
-    if (categoryName === 'mineral') {
+    if (subCategory === 'mineral') {
       return <Mineral />;
     }
 
     // Manufactured
 
-    if (categoryName === 'instrument') {
+    if (subCategory === 'instrument') {
       return <Instrument />;
     }
 
-    if (categoryName === 'automobile') {
+    if (subCategory === 'automobile') {
       return <Automobile />;
     }
 

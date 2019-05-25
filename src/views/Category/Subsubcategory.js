@@ -19,7 +19,7 @@ import Actor from './Art/Cinema/Actor';
 import Author from './Art/Literature/Author';
 import Book from './Art/Literature/Book';
 
-// ART/LITERATURE SUBSUBCATEGORY
+// ART/VIDEOGAMES SUBSUBCATEGORY
 import Game from './Art/VideoGames/Game';
 
 // SPORT/SKATEBOARDING SUBSUBCATEGORY
@@ -41,7 +41,10 @@ import FootballAthlete from './Sports/Football/FootballAthlete';
 import BaseballTeam from './Sports/Baseball/BaseballTeam';
 import BaseballAthlete from './Sports/Baseball/BaseballAthlete';
 
-// MANUFACTURED/INSTRUMENT SUBCATEGORY
+// GEOGRAPHY/COUNTRY SUBSUBCATEGORY
+import StateProvince from './Geography/GeoCountry/StateProvince';
+
+// MANUFACTURED/INSTRUMENT SUBSUBCATEGORY
 import Manufacturer from './Manufactured/Instrument/Manufacturer';
 
 // MANUFACTURED/AUTOMOBILE SUBCATEGORY
@@ -55,129 +58,135 @@ export default class Subsubcategory extends Component {
     this.state = {};
   }
 
-  renderSubSubcatagoryDetails(subCategory) {
+  renderSubsubcatagoryDetails(subSubcategory) {
 
     // ART / VISUAL
 
-    if (subCategory === 'threed') {
+    if (subSubcategory === 'threed') {
       return <ThreeD />;
     }
 
-    if (subCategory === 'twod') {
+    if (subSubcategory === 'twod') {
       return <TwoD />;
     }
 
     // ART / MUSIC
 
-    if (subCategory === 'artist-group') {
+    if (subSubcategory === 'artist-group') {
       return <ArtistGroup />;
     }
 
-    if (subCategory === 'album') {
+    if (subSubcategory === 'album') {
       return <Album />;
     }
 
-    if (subCategory === 'song') {
+    if (subSubcategory === 'song') {
       return <Song />;
     }
     
     // ART / CINEMA
 
-    if (subCategory === 'director') {
+    if (subSubcategory === 'director') {
       return <Director />;
     }
 
-    if (subCategory === 'film') {
+    if (subSubcategory === 'film') {
       return <Film />;
     }
 
-    if (subCategory === 'series') {
+    if (subSubcategory === 'series') {
       return <Series />;
     }
 
-    if (subCategory === 'actor') {
+    if (subSubcategory === 'actor') {
       return <Actor />;
     }
 
     // ART / LITERATURE
 
-    if (subCategory === 'author') {
+    if (subSubcategory === 'author') {
       return <Author />;
     }
 
-    if (subCategory === 'book') {
+    if (subSubcategory === 'book') {
       return <Book />;
     }
 
     // ART / VIDEO GAME
 
-    if (subCategory === 'game') {
+    if (subSubcategory === 'game') {
       return <Game />;
     }
 
     // SPORTS / SKATEBOARDING
 
-    if (subCategory === 'skater') {
+    if (subSubcategory === 'skater') {
       return <Skater />;
     }
 
     // SPORTS / AMERICANFOOTBALL
 
-    if (subCategory === 'american-football-team') {
+    if (subSubcategory === 'american-football-team') {
       return <AmericanFootballTeam />;
     }
 
-    if (subCategory === 'american-football-athlete') {
+    if (subSubcategory === 'american-football-athlete') {
       return <AmericanFootballAthlete />;
     }
 
     // SPORTS / BASKETBALL
 
-    if (subCategory === 'basketball-team') {
+    if (subSubcategory === 'basketball-team') {
       return <BasketballTeam />;
     }
 
-    if (subCategory === 'basketball-athlete') {
+    if (subSubcategory === 'basketball-athlete') {
       return <BasketballAthlete />;
     }
 
     // SPORTS / FOOTBALL
 
-    if (subCategory === 'football-team') {
+    if (subSubcategory === 'football-team') {
       return <FootballTeam />;
     }
 
-    if (subCategory === 'football-athlete') {
+    if (subSubcategory === 'football-athlete') {
       return <FootballAthlete />;
     }
 
     // SPORTS / BASEBALL
 
-    if (subCategory === 'baseball-team') {
+    if (subSubcategory === 'baseball-team') {
       return <BaseballTeam />;
     }
 
-    if (subCategory === 'baseball-athlete') {
+    if (subSubcategory === 'baseball-athlete') {
       return <BaseballAthlete />;
+    }
+
+    // GEOGRAPHY / COUNTRY
+
+    if (subSubcategory === 'state-province') {
+      return <StateProvince />;
     }
 
     // MANUFACTURED / INSTRUMENT
 
-    if (subCategory === 'manufacturer') {
+    if (subSubcategory === 'manufacturer') {
       return <Manufacturer />;
     }
 
     // MANUFACTURED / AUTOMOBILE
 
-    if (subCategory === 'cars') {
+    if (subSubcategory === 'cars') {
       return <Cars />;
     }
 
-    if (subCategory === 'trucks') {
+    if (subSubcategory === 'trucks') {
       return <Trucks />;
     }
 
-    if (subCategory === 'bikes') {
+    if (subSubcategory === 'bikes') {
       return <Bikes />;
     }
     
@@ -192,7 +201,7 @@ export default class Subsubcategory extends Component {
           {`/category/${this.props.match.params.categoryName}/${this.props.match.params.subCategory}
           /${this.props.match.params.subSubcategory}`}{' '} Page
         </h1>
-        {this.renderSubSubcatagoryDetails(this.props.match.params.subSubcategory)}
+        {this.renderSubsubcatagoryDetails(this.props.match.params.subSubcategory)}
       </div>
     );
   }
