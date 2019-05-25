@@ -12,7 +12,7 @@ export default class Geography extends Component {
       <div>
         <div className="explore__container">
         <h2>Geography</h2>
-        <Link to="/category/geography/geocountry" className="category-item blue">Country</Link>
+        <Link to="/category/geography/geocountry" className="category-item blue">Country!</Link>
         <Link to="/categories" className="category-item yellow">Back</Link>
       </div>
       </div>
