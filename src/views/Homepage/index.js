@@ -30,7 +30,7 @@ export default class Homepage extends Component {
               <Link to="/signup" className="signup__link">
             Sign Up
           </Link>
-
+          <Link to="/forgotpassword" className="link">Forgot password?</Link>
           </div>
         </div>
       </div>

@@ -62,39 +62,8 @@
   
 }
 
-.profile {
-  display: flex;
-  height: 93vh;
-}
-
-.hero {
-  width: 50%;
-}
-
-.interact {
-  display: flex;
-  height: 50%;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-.message {
-  background-color: gold;
-}
-
 .favs {
   background-color: firebrick;
-}
-
-.name__container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.name {
-  font-size: 100px;
-  color: darkgreen;
 }
 
 .headline {
@@ -332,19 +301,20 @@
   text-decoration: none;
 }
 
-.r {
+.heading__red {
   font-size: 100px;
   text-align: center;
   color: firebrick;
   margin: 0px;
+  text-decoration: none;
 }
 
-.g {
+.heading__green {
   font-size: 100px;
   text-align: center;
   color: darkgreen;
-  text-decoration: none;
   margin: 0px;
+  text-decoration: none;
 }
 
 .heading__orange {
@@ -355,12 +325,363 @@
   text-decoration: none;
 }
 
-.p {
+.heading__purple {
   font-size: 100px;
   text-align: center;
   color: slateblue;
-  text-decoration: none;
   margin: 0px;
+  text-decoration: none;
+}
+
+.message__navbar {
+  padding: 1%;
+  display: flex;
+  justify-content: space-between;
+  height: 7vh;
+}
+
+.message__body {
+  display: flex;
+}
+
+.message__textboxes {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 75%;
+}
+
+.message__line {
+  height: 10px;
+  width: 100%;
+  background-color: firebrick;
+}
+
+.message__read {
+  border-top: 10px solid gold;
+  border-left: 10px solid gold;
+  border-right: 10px solid gold;
+  margin-left: 5%;
+  height: 40vh;
+}
+
+.message__write {
+  border-bottom: 10px solid darkgreen;
+  border-left: 10px solid darkgreen;
+  border-right: 10px solid darkgreen;
+  margin-left: 5%;
+  height: 40vh;
+}
+
+.message__header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border-bottom: 10px solid darkorange;
+  border-top: 10px solid darkorange;
+  border-right: 10px solid darkorange;
+  width: 20%;
+}
+
+.message__header--info {
+  font-size: 32px;
+  margin: 6%;
+}
+
+.message__header--button {
+  background-color: slateblue;
+}
+
+.message__button {
+  display: flex;
+  justify-content: center;
+}
+
+.message__new{
+  border: 10px solid;
+  font-size: 24px;
+  align-self: center;
+  margin: 2%;
+  font-weight: bold;
+}
+
+.messages__user1 {
+  height: 27vh;
+  width: 46vh;
+  background-size: cover;
+  background-position: center;
+  background-image: url('https://www.soloskatemag.com/upload/Storage/soloskatemag_Elissa_Steamer_by_Sarah_Meurle.jpg');
+}
+
+.messages__user2 {
+  height: 27vh;
+  width: 46vh;
+  background-position: top;
+  background-size: cover;
+  background-image: url('https://yunexis.com/wp-content/uploads/2015/05/Vanessa_sls_women_portraits_namchivan-38.jpg');
+}
+
+.messages__user3 {
+  height: 27vh;
+  width: 46vh;
+  background-position: top;
+  background-size: cover;
+  background-image: url('https://static1.squarespace.com/static/580e92a959cc68e529a66693/t/5817c2cebebafb322e53fbdd/1477952213447/');
+}
+
+.message__button {
+  display: flex;
+  justify-content: center;
+}
+
+.message__new{
+  border: 10px solid;
+  font-size: 24px;
+  align-self: center;
+  margin: 2%;
+  font-weight: bold;
+}
+
+.members__body {
+  display: flex;
+  flex-direction: column;
+}
+
+.members__favs {
+  font-size: 28px;
+  width: 67%;
+  padding: 2%;
+}
+
+.members__row1 {
+  display: flex;
+  justify-content: space-between;
+  border-top: 10px solid gold;
+  border-right: 10px solid gold;
+  border-left: 10px solid gold;
+  margin-left: 4%;
+  margin-right: 4%
+}
+
+.members__write1 {
+  padding-left: 2%;
+  padding-right: 2%;
+  border-left: 10px solid gold;
+  border-right: 10px solid gold;
+}
+
+.members__line1{
+  height: 10px;
+  width: 96%;
+  background-color: firebrick;
+}
+
+.members__row2 {
+  display: flex;
+  justify-content: space-between;
+  border-right: 10px solid darkgreen;
+  border-left: 10px solid darkgreen;
+  margin-left: 4%;
+  margin-right: 4%
+}
+
+.members__write2 {
+  padding-left: 2%;
+  padding-right: 2%;
+  border-left: 10px solid darkgreen;
+  border-right: 10px solid darkgreen;
+}
+
+.members__line2{
+  height: 10px;
+  width: 96%;
+  background-color: darkorange;
+}
+
+.members__row3 {
+  justify-content: space-between;
+  display: flex;
+  border-bottom: 10px solid slateblue;
+  border-right: 10px solid slateblue;
+  border-left: 10px solid slateblue;
+  margin-left: 4%;
+  margin-right: 4%
+}
+
+.members__write3 {
+  padding-left: 2%;
+  padding-right: 2%;
+  border-left: 10px solid slateblue;
+  border-right: 10px solid slateblue;
+}
+
+.members__avatar1 {
+  height: 30vh;
+  width: 46vh;
+  background-size: cover;
+  background-position: center;
+  background-image: url('https://factmag-images.s3.amazonaws.com/wp-content/uploads/2014/10/grouper_moon-3BW_Jason-Bokros.jpg');
+}
+
+.members__avatar2 {
+  height: 30vh;
+  width: 46vh;
+  background-position: center;
+  background-size: cover;
+  background-image: url('https://a3-images.myspacecdn.com/images03/3/9959a90ba01f4d49b117cac49a4513fd/600x600.jpg');
+}
+
+.members__avatar3 {
+  height: 30vh;
+  width: 46vh;
+  background-position: center;
+  background-size: cover;
+  background-image: url('https://i.ytimg.com/vi/aNGTG1yn85w/maxresdefault.jpg');
+}
+
+.tribepage__img {
+  width: 96%;
+  height: 50vh;
+}
+
+.heading {
+    color: blue;
+    font-size: 40px;
+}
+
+.profile {
+    display: flex;
+    height: 93vh;
+}
+
+.hero {
+    width: 50%;
+}
+
+.interact {
+    display: flex;
+    height: 50%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.fav {
+  border: 10px solid gold;
+  background-color: firebrick;
+}
+
+.message {
+    background-color: gold;
+}
+
+
+.name__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.name {
+    font-size: 100px;
+    color: darkgreen;
+}
+
+.headline {
+  font-size: 40px;
+  color: darkorange;
+}
+
+.tribepage__img {
+  width: 50%;
+  height: 85vh;
+  border: 10px solid slateblue;
+  background-position: center;
+  background-size: cover;
+  background-image: url('http://www.korea.net/upload/content/editImage/181206_son_700.jpg');
+}
+
+.comment__container {
+  display: flex;
+  justify-content: space-evenly;
+  height: 45vh;
+  width: 100%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.comment {
+  display: flex;
+  flex-grow: 2;
+  border: 10px solid blue;
+  padding: 1%;
+}
+
+.user__img {
+  flex-grow: 1;
+  border: 10px solid slateblue;
+  margin-left: 1%;
+  background-position: center;
+  background-size: cover;
+  background-image: url('https://static.highsnobiety.com/thumbor/NLDTgrbzSUOhHcw1thxQPPQ_JMo=/fit-in/800x480/smart/static.highsnobiety.com/wp-content/uploads/2017/01/27113747/brian-anderson-street-style-0.jpg')
+}
+
+.comment__functions {
+  display: flex;
+  flex-direction: column;
+  width: 65%;
+}
+
+.comment__input {
+  height: 25vh;
+  width: 90%;
+  border: 10px solid gold;
+}
+
+.comment__avatar {
+  display: none;
+}
+
+.comment__buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 90%
+}
+
+.comment__post {
+  margin-top: 2%;
+  font-size: 40px;
+  font-weight: bold;
+  border: 10px solid firebrick;
+}
+
+.arrows {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.arrow__up {
+  height: 200px;
+  width: 168px;
+  background-color: darkgreen;
+  align-self: center;
+  margin-left: 4%;
+  margin-right: 2%;
+
+}
+
+.arrow__down {
+  height: 200px;
+  width: 168px;
+  background-color: darkorange;
+
+  align-self: center;
+  margin-left: 2%;
+  margin-right: 4%;
+}
+
+.flag {
+  margin-top: 2%;
 }
 
 .message__navbar {
@@ -424,15 +745,211 @@
   background-color: slateblue;
 }
 
-.message__button {
-  display: flex;
-  justify-content: center;
+.link {
+  color: white;
 }
 
-.message__new{
-  border: 10px solid;
-  font-size: 24px;
-  align-self: center;
-  margin: 2%;
-  font-weight: bold;
+
+/* MEDIA QUERIES */
+
+
+@media (max-width: 800px) {
+  .hero {
+      width: 100%;
+  }
+
+  .profile {
+      flex-direction: column-reverse;
+  }
+
+  .profile__img {
+      height: 50vh;
+      width: 94%;
+      margin: 1%;
+  }
+
+  .interact {
+      padding: 5%;
+  }
+  .interact a {
+      margin: 2%;
+  }
+
+  .favs {
+      margin: 2%;
+  }
+
+  .name {
+      font-size: 80px;
+  }
+
+  .navbar {
+      height: 5vh;
+  }
+
+  .tribe {
+      height: 45vh;
+  }
+
+  .board {
+      height: 45vh;
+  }
+
+  .tribe1 {
+      height: 39.5vh;
+      width: 28%;
+  }
+
+  .tribe2 {
+      width: 28%;
+  }
+
+  .tribe3 {
+      width: 28%;
+  }
+
+  .board {
+      align-content: space-around;
+  }
+
+  .board__functions{
+      flex-direction: column;
+  }
+
+  .board__input {
+      width: 95%;
+  }
+
+  .board__buttons {
+      flex-direction: row;
+      font-size: 60px;
+      width: 100%;
+  }
+
+  .board__post {
+      font-size: 40px;
+
+  }
+
+  .board__stalk {
+      font-size: 40px;
+
+  }
+
+  .explore__container {
+      text-align: center;
+  }
+
+  .geo {
+  }
+
+  .message__textboxes {
+      width: 70%;
+  }
+
+  .message__header {
+      width: 25%;
+  }
+
+  .message__header--info {
+      font-size: 20px;
+  }
+
+  .message__header--button img {
+      width: 80px;
+  }
+
+  .members__write1 img{
+      height: 80px;
+      width: 80px;
+      align-self: center;
+  }
+
+  .members__write2 img{
+      height: 80px;
+      width: 80px;
+  }
+
+  .members__write3 img{
+      height: 80px;
+      width: 80px;
+  }
+
+  .members__favs {
+      font-size: 20px;
+  }
+
+  .tribepage__img {
+      width: 96%;
+      height: 50vh;
+  }
+
+  .name {
+      font-size: 56px;
+  }
+
+  .headline {
+      font-size: 38px;
+  }
+
+  .comment {
+      flex-direction: column;
+      margin-top: 2%;
+  }
+
+  .arrow__down img {
+      width: 50px;
+      height: 50px;
+  }
+
+  .arrow__down {
+      width: 50px;
+      height: 50px;
+  }
+  .arrow__up img {
+      width: 50px;
+      height: 50px;
+  }
+  .arrow__up {
+      width: 50px;
+      height: 50px;
+      margin: 1%;
+  }
+
+  .comment__container {
+      flex-direction: column-reverse;
+      height: 100%;
+      margin-top: 2%;
+  }
+
+  .user__img {
+      display: none;
+  }
+
+  .comment__functions {
+      width: 100%;
+  }
+
+  .comment__functions input{
+      height: 20vh;
+      width: 60%
+  }
+
+  .comment__input--avatar {
+      display: flex;
+      justify-content: space-evenly;
+}
+
+  .comment__avatar {
+      display: flex;
+      height: 20vh;
+      width: 25%;
+      border: 10px solid slateblue;
+      margin-left: 1%;
+      background-position: center;
+      background-size: cover;
+      background-image: url('https://static.highsnobiety.com/thumbor/NLDTgrbzSUOhHcw1thxQPPQ_JMo=/fit-in/800x480/smart/static.highsnobiety.com/wp-content/uploads/2017/01/27113747/brian-anderson-street-style-0.jpg')
+  
+
+  }
 }

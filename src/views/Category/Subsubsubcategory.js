@@ -5,23 +5,23 @@ import Fashion from './Art/Visual/ThreeD/Fashion';
 // ART/VISUAL/2D SUBSUBSUBCATEGORY
 import Comics from './Art/Visual/TwoD/Comics';
 
-// ART/MUSIC/ARTISTGROUP SUBSUBCATEGORY
+// ART/MUSIC/ARTISTGROUP SUBSUBSUBCATEGORY
 import Rock from './Art/Music/ArtistGroup/Rock';
 import HipHop from './Art/Music/ArtistGroup/HipHop';
 import Pop from './Art/Music/ArtistGroup/Pop';
 import Jazz from './Art/Music/ArtistGroup/Jazz';
 import Blues from './Art/Music/ArtistGroup/Blues';
 
-// GEOGRAPHY/COUNTRY/STATE-PROVINCE SUBSUBCATEGORY
+// GEOGRAPHY/COUNTRY/STATE-PROVINCE SUBSUBSUBCATEGORY
 import City from './Geography/GeoCountry/StateProvince/City';
 
-// MANUFACTURED/AUTOMOBILE/CARS SUBSUBCATEGORY
+// MANUFACTURED/AUTOMOBILE/CARS SUBSUBSUBCATEGORY
 import CarManufacturer from './Manufactured/Automobile/Cars/CarManufacturer';
 
-// MANUFACTURED/AUTOMOBILE/TRUCKS SUBSUBCATEGORY
+// MANUFACTURED/AUTOMOBILE/TRUCKS SUBSUBSUBCATEGORY
 import TruckManufacturer from './Manufactured/Automobile/Trucks/TruckManufacturer';
 
-// MANUFACTURED/AUTOMOBILE/BIKES SUBSUBCATEGORY
+// MANUFACTURED/AUTOMOBILE/BIKES SUBSUBSUBCATEGORY
 import BikeManufacturer from './Manufactured/Automobile/Bikes/BikeManufacturer';
 
 export default class Subsubsubcategory extends Component {

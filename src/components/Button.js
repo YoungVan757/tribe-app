@@ -7,6 +7,6 @@ export default class Button extends Component {
   }
 
   render() {
-    return <button className="button" style={{borderColor: this.props.borderColor, color: this.props.color}}>{this.props.title}</button>;
+    return <button className="button" style={{borderColor: this.props.borderColor, color: this.props.color, fontSize: this.props.fontSize}}>{this.props.title}</button>;
   }
 }
