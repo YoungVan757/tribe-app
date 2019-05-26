@@ -78,9 +78,15 @@ class App extends Component {
           <Route exact path="/categories" component={Categories} />
           <Route exact path="/category/:categoryName" component={Category} />
           <Route exact path="/category/:categoryName/:subCategory" component={Subcategory} />
+<<<<<<< HEAD
           <Route exact path="/category/:categoryName/:subCategory/:subSubcategory" component={Subsubcategory} />
           <Route exact path="/category/:categoryName/:subCategory/:subSubcategory/:subSubsubcategory" component={Subsubsubcategory} />
           <Route exact path="/category/:categoryName/:subCategory/:subSubcategory/:subSubsubcategory/:subSubsubsubcategory" component={Subsubsubsubcategory} />
+=======
+          <Route exact path="/category/:categoryName/:subCategory/:subSubcategory" component={Subsubategory} />
+
+          <Route exact path="/category/:categoryName/:subCategory/:subSubcategory/:subSubsubcategory" component={Subsubsubategory} />
+>>>>>>> 1001c9a1e9ea1a30da8baee3b7d60c3614750d2c
 
           <Route exact path="/message" component={Message} />
           <Route exact path="/messages" component={Messages} />
