@@ -5,6 +5,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Homepage from './views/Homepage/index';
 import ForgotPassword from './components/ForgotPassword';
+import NotFound from './components/NotFound';
 
 import Profile from './views/Profile/index';
 import Settings from './views/Settings/index';
@@ -69,6 +70,7 @@ class App extends Component {
 
           <Route exact path="/" component={Homepage} />
           <Route exact path="/forgotpassword" component={ForgotPassword} />
+          <Route exact path="/:" component={NotFound} />
 
           <Route exact path="/profile/:username" component={Profile} />
           <Route exact path="/settings" component={Settings} />
@@ -78,15 +80,9 @@ class App extends Component {
           <Route exact path="/categories" component={Categories} />
           <Route exact path="/category/:categoryName" component={Category} />
           <Route exact path="/category/:categoryName/:subCategory" component={Subcategory} />
-<<<<<<< HEAD
           <Route exact path="/category/:categoryName/:subCategory/:subSubcategory" component={Subsubcategory} />
           <Route exact path="/category/:categoryName/:subCategory/:subSubcategory/:subSubsubcategory" component={Subsubsubcategory} />
           <Route exact path="/category/:categoryName/:subCategory/:subSubcategory/:subSubsubcategory/:subSubsubsubcategory" component={Subsubsubsubcategory} />
-=======
-          <Route exact path="/category/:categoryName/:subCategory/:subSubcategory" component={Subsubategory} />
-
-          <Route exact path="/category/:categoryName/:subCategory/:subSubcategory/:subSubsubcategory" component={Subsubsubategory} />
->>>>>>> 1001c9a1e9ea1a30da8baee3b7d60c3614750d2c
 
           <Route exact path="/message" component={Message} />
           <Route exact path="/messages" component={Messages} />

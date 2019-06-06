@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import Formfield from '../../components/FormField';
+import { Link } from 'react-router-dom';
 import MessageRead from '../../components/MessageRead';
 import MessageHeader from '../../components/MessageHeader';
 
 export default class Message extends Component {
   render() {
-    return <div className="message__body">
+    return<div className="container">
+      <Link to="/messages" className="message__new">messages</Link>
+        <div className="message__body">
               <div className="message__textboxes">
               <MessageRead />
               <div className="message__line"></div>
@@ -14,8 +16,8 @@ export default class Message extends Component {
               <div className="message__header">
               <MessageHeader />
               </div>
-              </div>
-
+          </div>
+          </div>
     ;
   }
 }
