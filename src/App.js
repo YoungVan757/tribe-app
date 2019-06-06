@@ -9,8 +9,8 @@ import NotFound from './components/NotFound';
 
 import Profile from './views/Profile/index';
 import Settings from './views/Settings/index';
-import DeletePage from './views/Settings/DeletePage/index'
-import EditPage from './views/Settings/EditPage/index'
+import DeletePage from './views/Settings/DeletePage/index';
+import EditPage from './views/Settings/EditPage/index';
 
 import Categories from './views/Categories/index';
 import Category from './views/Category/index';
@@ -28,6 +28,7 @@ import Tribes from './views/Tribes/index';
 
 import About from './views/About/index';
 
+import DataSandBox from './views/datasandbox';
 
 class App extends Component {
   render() {
@@ -36,6 +37,9 @@ class App extends Component {
         <Navbar />
         <Router>
           <ul>
+            <li>
+              <Link to="/sandbox">Data Sandbox</Link>
+            </li>
             <li>
               <Link to="/">Home</Link>
             </li>
@@ -68,25 +72,42 @@ class App extends Component {
             </li>
           </ul>
 
+          <Route exact path="/sandbox" component={DataSandBox} />
           <Route exact path="/" component={Homepage} />
           <Route exact path="/forgotpassword" component={ForgotPassword} />
           <Route exact path="/:" component={NotFound} />
 
           <Route exact path="/profile/:username" component={Profile} />
           <Route exact path="/settings" component={Settings} />
-          <Route exact path="/settings/deletepage" component={DeletePage} /> 
-          <Route exact path="/settings/editpage" component={EditPage} /> 
+          <Route exact path="/settings/deletepage" component={DeletePage} />
+          <Route exact path="/settings/editpage" component={EditPage} />
 
           <Route exact path="/categories" component={Categories} />
           <Route exact path="/category/:categoryName" component={Category} />
-          <Route exact path="/category/:categoryName/:subCategory" component={Subcategory} />
-          <Route exact path="/category/:categoryName/:subCategory/:subSubcategory" component={Subsubcategory} />
-          <Route exact path="/category/:categoryName/:subCategory/:subSubcategory/:subSubsubcategory" component={Subsubsubcategory} />
-          <Route exact path="/category/:categoryName/:subCategory/:subSubcategory/:subSubsubcategory/:subSubsubsubcategory" component={Subsubsubsubcategory} />
+          <Route
+            exact
+            path="/category/:categoryName/:subCategory"
+            component={Subcategory}
+          />
+          <Route
+            exact
+            path="/category/:categoryName/:subCategory/:subSubcategory"
+            component={Subsubcategory}
+          />
+          <Route
+            exact
+            path="/category/:categoryName/:subCategory/:subSubcategory/:subSubsubcategory"
+            component={Subsubsubcategory}
+          />
+          <Route
+            exact
+            path="/category/:categoryName/:subCategory/:subSubcategory/:subSubsubcategory/:subSubsubsubcategory"
+            component={Subsubsubsubcategory}
+          />
 
           <Route exact path="/message" component={Message} />
           <Route exact path="/messages" component={Messages} />
-          
+
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/tribepage" component={TribePage} />
           <Route exact path="/tribes" component={Tribes} />
