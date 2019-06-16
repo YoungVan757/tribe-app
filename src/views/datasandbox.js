@@ -31,16 +31,48 @@ export default class DataSandBox extends Component {
     // Our Firebase code goes here..
 
     const database = firebase.database();
-
     const uniqueId = Date.now();
 
+    const currentUser = {
+      id: '1234-christian'
+    };
+
+    const currentTribe = {
+      id: 'car-tribe'
+    };
+
+    const databaseUpdates = {};
+
+    databaseUpdates[`/comments/${uniqueId}/userId`] = currentUser.id;
+    databaseUpdates[`/comments/${uniqueId}/comment`] = this.state.comment;
+
+    databaseUpdates[
+      `/users/${currentUser.id}/comments/${uniqueId}/comment`
+    ] = this.state.comment;
+
+    databaseUpdates[
+      `/tribes/${currentTribe.id}/comments/${uniqueId}/comment`
+    ] = this.state.comment;
+    databaseUpdates[`/tribes/${currentTribe.id}/comments/${uniqueId}/userId`] =
+      currentUser.id;
+
     database
-      .ref(`/comments/${uniqueId}`)
-      .set({
-        comment: this.state.comment
-      })
+      .ref()
+      .update(databaseUpdates)
       .then(() => {
         this.fetchData();
+      });
+  }
+
+  getUser(userId) {
+    firebase
+      .database()
+      .ref(`/users/${userId}`)
+      .once('value')
+      .then(snapshot => {
+        console.log('USER SNAPSHOT', snapshot.val());
+        const user = snapshot.val();
+        alert(`${user.fullName} posted this!`);
       });
   }
 
@@ -51,8 +83,10 @@ export default class DataSandBox extends Component {
         const singleComment = this.state.comments[k];
         console.log('SINGLE COMMENT', singleComment);
         return (
-          <div>
-            {singleComment.comment}
+          <div onClick={() => this.getUser(singleComment.userId)}>
+            <b>{singleComment.comment}</b>
+            <br />
+            <small>Click to see the user who posted this!</small>
             <hr />
           </div>
         );
@@ -71,7 +105,7 @@ export default class DataSandBox extends Component {
           placeholder="Type here"
         />
         <button onClick={() => this.saveComment()}>Add comment</button>
-        <h4>Comments</h4>
+        <h4>Recent Comments</h4>
         {this.renderComments()}
       </div>
     );
