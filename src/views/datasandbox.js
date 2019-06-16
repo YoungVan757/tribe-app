@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import firebase from '../database';
+import firebase from '../firebase';
 
 export default class DataSandBox extends Component {
   constructor(props) {

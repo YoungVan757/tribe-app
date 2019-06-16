@@ -131,19 +131,19 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 41vh;
   border: 10px solid blue;
   padding: 2%;
 }
 
 .board__functions {
   display: flex;
+  flex-direction: column;
   height: 100%;
   width: 100%;
 }
 
 .board__input {
-  height: 97%;
+  height: 300px;
   width: 70%;
   font-size: 60px;
   border: 10px solid gold;
@@ -161,7 +161,7 @@
   font-size: 120px;
   color: rgb(31, 22, 13);
   border: 10px solid firebrick;
-  margin: 2%;
+  margin-left: 2%;
 }
 
 .board__stalk {
@@ -169,6 +169,15 @@
   color: slateblue;
   border: 10px solid darkgreen;
   margin: 2%;
+}
+
+.board__comments {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  font-weight: bold;
+  border: 10px solid darkgreen;
+  margin-top: 2%;
 }
 
 .flex__container {
@@ -603,7 +612,7 @@
 .comment__container {
   display: flex;
   justify-content: space-evenly;
-  height: 45vh;
+  flex-direction: column;
   width: 100%;
   margin-top: 2%;
   margin-bottom: 2%;
@@ -616,8 +625,17 @@
   padding: 1%;
 }
 
+.comment__box {
+  display: flex;
+  border: 10px solid gold;
+  padding: 1%;
+  justify-content: space-evenly;
+  margin-top: 1%;
+}
+
 .user__img {
-  flex-grow: 1;
+  height: 200px;
+  width: 200px;
   border: 10px solid slateblue;
   margin-left: 1%;
   background-position: center;
@@ -950,6 +968,5 @@
       background-size: cover;
       background-image: url('https://static.highsnobiety.com/thumbor/NLDTgrbzSUOhHcw1thxQPPQ_JMo=/fit-in/800x480/smart/static.highsnobiety.com/wp-content/uploads/2017/01/27113747/brian-anderson-street-style-0.jpg')
   
-
   }
 }
