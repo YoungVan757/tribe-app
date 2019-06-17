@@ -112,6 +112,8 @@ export default class DataSandBox extends Component {
       `users/${currentUser.id}/tribesFollowing/${currentTribe.id}/tribeId`
     ] = currentTribe.id;
 
+    
+
     database
       .ref()
       .update(databaseUpdates)
@@ -119,6 +121,8 @@ export default class DataSandBox extends Component {
         this.fetchData();
       });
   }
+
+
 
   render() {
     return (
