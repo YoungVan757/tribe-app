@@ -34,8 +34,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Navbar />
+        
         <Router>
+        <Navbar />
           <ul>
             <li>
               <Link to="/sandbox">Data Sandbox</Link>
