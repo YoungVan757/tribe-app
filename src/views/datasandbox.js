@@ -41,17 +41,20 @@ export default class DataSandBox extends Component {
       id: 'car-tribe'
     };
 
-
-
     const databaseUpdates = {};
 
     databaseUpdates[`/comments/${uniqueId}/userId`] = currentUser.id;
     databaseUpdates[`/comments/${uniqueId}/comment`] = this.state.comment;
 
-    databaseUpdates[`/users/${currentUser.id}/comments/${uniqueId}/comment`] = this.state.comment;
+    databaseUpdates[
+      `/users/${currentUser.id}/comments/${uniqueId}/comment`
+    ] = this.state.comment;
 
-    databaseUpdates[`/tribes/${currentTribe.id}/comments/${uniqueId}/comment`] = this.state.comment;
-    databaseUpdates[`/tribes/${currentTribe.id}/comments/${uniqueId}/userId`] = currentUser.id;
+    databaseUpdates[
+      `/tribes/${currentTribe.id}/comments/${uniqueId}/comment`
+    ] = this.state.comment;
+    databaseUpdates[`/tribes/${currentTribe.id}/comments/${uniqueId}/userId`] =
+      currentUser.id;
 
     database
       .ref()
@@ -72,7 +75,6 @@ export default class DataSandBox extends Component {
         alert(`${user.fullName} posted this!`);
       });
   }
-
 
   renderComments() {
     const comments =
@@ -99,19 +101,23 @@ export default class DataSandBox extends Component {
       id: 'car-tribe'
     };
     const currentUser = {
-      id: '1234-christian'
+      id: '123-im-a-user'
     };
     const databaseUpdates = {};
 
-      databaseUpdates[`tribes/${currentTribe.id}/userId/${currentUser.id}/following/true`] = this.state.comment;
-   
-      database
+    databaseUpdates[
+      `tribes/${currentTribe.id}/followers/${currentUser.id}/userId`
+    ] = currentUser.id;
+    databaseUpdates[
+      `users/${currentUser.id}/tribesFollowing/${currentTribe.id}/tribeId`
+    ] = currentTribe.id;
+
+    database
       .ref()
       .update(databaseUpdates)
       .then(() => {
         this.fetchData();
       });
-  
   }
 
   render() {
@@ -124,7 +130,7 @@ export default class DataSandBox extends Component {
           placeholder="Type here"
         />
         <button onClick={() => this.saveComment()}>Add comment</button>
-        <button onClick={()=> this.followTribe()}>Follow</button>
+        <button onClick={() => this.followTribe()}>Follow</button>
         <h4>Recent Comments</h4>
         {this.renderComments()}
       </div>
