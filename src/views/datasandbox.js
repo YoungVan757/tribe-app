@@ -105,22 +105,9 @@ export default class DataSandBox extends Component {
     };
     const databaseUpdates = {};
 
-<<<<<<< HEAD
       databaseUpdates[`tribes/${currentTribe.id}/userId/${currentUser.id}/following`] = true;
    
       database
-=======
-    databaseUpdates[
-      `tribes/${currentTribe.id}/followers/${currentUser.id}/userId`
-    ] = currentUser.id;
-    databaseUpdates[
-      `users/${currentUser.id}/tribesFollowing/${currentTribe.id}/tribeId`
-    ] = currentTribe.id;
-
-    
-
-    database
->>>>>>> 63443ae707dc31a3227591422610652fde6cab8e
       .ref()
       .update(databaseUpdates)
       .then(() => {

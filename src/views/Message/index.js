@@ -9,7 +9,7 @@ export default class Message extends Component {
     super(props);
     this.state={
       message:''
-    }
+    };
   }
 
   componentDidMount() {
@@ -30,14 +30,26 @@ export default class Message extends Component {
   }
 
 sendMessage() {
+
+  
     const database = firebase.database();
     const uniqueId = Date.now();
   
     const databaseUpdates = {};
+    // SENDING MESSAGES..
+
+    // 1. Who am i?
+    // 2. Who am i sending a message to?
+    // 3. What's the message?
+    // 4. When am I sending it (date)?
   
     databaseUpdates[`/user/user1/messages/user2/${uniqueId}/message`] = this.state.message;
+    databaseUpdates[`/users/user-1/messages/user-2/${uniqueId}/sender/`] = 'user-1';
+    databaseUpdates[`/users/user-1/messages/user-2/${uniqueId}/date/`] = Date.now()
   
     databaseUpdates[`/user/user2/messages/user1/${uniqueId}/message`] = this.state.message;
+    databaseUpdates[`/users/user-2/messages/user-1/${uniqueId}/sender/`] = 'user-1';
+    databaseUpdates[`/users/user-2/messages/user-1/${uniqueId}/date/`] = Date.now()
   
   
     database

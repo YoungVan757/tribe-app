@@ -1,54 +1,49 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../../components/Button';
+import firebase from 'firebase';
 
 export default class Messages extends Component {
-  sendMessage() {
-    // SENDING MESSAGES..
-
-    // 1. Who am i?
-    // 2. Who am i sending a message to?
-    // 3. What's the message?
-    // 4. When am I sending it (date)?
-
-    const databaseUpdates = {};
-
-    // --- user-1
-    // ----- messages
-    // --------- user-2
-    // ------------ + 34594395843953495
-    // ----------------- message: 'yo dude'
-    // ----------------- sender: user-1
-    // ----------------- date: date.now()
-    // ------------ + 46546546546456456
-    // ----------------- message: 'hey man brb'
-    // ----------------- sender: user-2
-    // ----------------- date: date.now()
-
-    databaseUpdates[`/users/user-1/messages/user-2/34594395843953495/message/`] = 'yo dude';
-    databaseUpdates[`/users/user-1/messages/user-2/34594395843953495/sender/`] = 'user-1';
-    databaseUpdates[`/users/user-1/messages/user-2/34594395843953495/date/`] = Date.now()
-
-    // --- user-2
-    // ----- messages
-    // --------- user-1
-    // ------------ + 34594395843953495
-    // ----------------- message: 'yo dude'
-    // ----------------- sender: user-1
-    // ----------------- date: date.now()
-    // ------------ + 46546546546456456
-    // ----------------- message: 'hey man brb'
-    // ----------------- sender: user-2
-    // ----------------- date: date.now()
-
-    databaseUpdates[`/users/user-2/messages/user-1/34594395843953495/message/`] = 'yo dude';
-    databaseUpdates[`/users/user-2/messages/user-1/34594395843953495/sender/`] = 'user-1';
-    databaseUpdates[`/users/user-2/messages/user-1/34594395843953495/date/`] = Date.now()
-
-   
-
+  constructor(props) {
+    super(props);
+    this.state={
+      message:'',
+    };
   }
 
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData() {
+
+    const uniqueId = Date.now();
+
+    firebase
+      .database()
+      .ref(`/user/user1/messages/user2/${uniqueId}/message`)
+      .once('value')
+      .then(snap=>{
+        const message = snap.val();
+        this.setState({
+          message
+        });
+      });
+  }
+
+  renderMessage() {
+    const message =
+    this.state.message &&
+    Object.keys(this.state.message).map(k=>{
+      const singleMessage = this.state.message[k];
+      return (
+        <div>
+          {singleMessage.message}
+        </div>
+      );
+    });
+    return message;
+  }
   render() {
     return (
       <div className="message__container">
@@ -62,9 +57,9 @@ export default class Messages extends Component {
             <div className="members__favs">
               <div class="messages__heading">Message:</div>
               <br />
-              Dude surf was so butter!
+              {this.renderMessage()}
               <br />
-              <Button className="button__post">delete message</Button>
+              <button className="button__post">delete message</button>
             </div>
             <Link to="/message" class="members__write1">
               <img
@@ -82,7 +77,7 @@ export default class Messages extends Component {
               <br />
               lmao saw that on Twitter
               <br />
-              <Button className="button__post">delete message</Button>
+              <button className="button__post">delete message</button>
             </div>
             <Link to="/message" class="members__write2">
               <img
@@ -100,7 +95,7 @@ export default class Messages extends Component {
               <br />
               Hey it was good seeing you today!
               <br />
-              <Button className="button__post">delete message</Button>
+              <button className="button__post">delete message</button>
             </div>
             <Link to="/message" class="members__write3">
               <img
