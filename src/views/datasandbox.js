@@ -103,7 +103,7 @@ export default class DataSandBox extends Component {
     };
     const databaseUpdates = {};
 
-      databaseUpdates[`tribes/${currentTribe.id}/userId/${currentUser.id}/following/true`] = this.state.comment;
+      databaseUpdates[`tribes/${currentTribe.id}/userId/${currentUser.id}/following`] = true;
    
       database
       .ref()

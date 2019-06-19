@@ -2,8 +2,52 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import MessageRead from '../../components/MessageRead';
 import MessageHeader from '../../components/MessageHeader';
+import firebase from 'firebase';
 
 export default class Message extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+      message:''
+    }
+  }
+
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData() {
+    firebase
+      .database()
+      .ref('/comments/')
+      .once('value')
+      .then(snapshot => {
+        const comments = snapshot.val();
+        this.setState({
+          comments
+        });
+      });
+  }
+
+sendMessage() {
+    const database = firebase.database();
+    const uniqueId = Date.now();
+  
+    const databaseUpdates = {};
+  
+    databaseUpdates[`/user/user1/messages/user2/${uniqueId}/message`] = this.state.message;
+  
+    databaseUpdates[`/user/user2/messages/user1/${uniqueId}/message`] = this.state.message;
+  
+  
+    database
+    .ref()
+    .update(databaseUpdates)
+    .then(() => {
+      this.fetchData();
+    });
+  }
+
   render() {
     return<div className="container">
       <Link to="/messages" className="message__new">messages</Link>
@@ -11,13 +55,23 @@ export default class Message extends Component {
               <div className="message__textboxes">
               <MessageRead />
               <div className="message__line"></div>
-              <input type="text" className="message__write" placeholder="Hey dude"></input>
+              <input
+                    onChange={e=>this.setState({ message: e.target.value})} 
+                    type="text" className="message__write" placeholder="Hey dude"></input>
               </div>
               <div className="message__header">
-              <MessageHeader />
+              <div className="message__header--info">
+              <div> To:<input type="text"
+                              placeholder="type username"></input>
+                              </div><br></br>
+              <div>Subject:<input type="text"
+                                  placeholder="type subject"></input>
+                                  </div><br></br>
+            
+            <Link to="/messagesent"><button onClick={()=>this.sendMessage()} className="message__header--button"><img width="220" height="220" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMCAzdjE4aDI0di0xOGgtMjR6bTYuNjIzIDcuOTI5bC00LjYyMyA1LjcxMnYtOS40NThsNC42MjMgMy43NDZ6bS00LjE0MS01LjkyOWgxOS4wMzVsLTkuNTE3IDcuNzEzLTkuNTE4LTcuNzEzem01LjY5NCA3LjE4OGwzLjgyNCAzLjA5OSAzLjgzLTMuMTA0IDUuNjEyIDYuODE3aC0xOC43NzlsNS41MTMtNi44MTJ6bTkuMjA4LTEuMjY0bDQuNjE2LTMuNzQxdjkuMzQ4bC00LjYxNi01LjYwN3oiLz48L3N2Zz4="></img></button></Link> 
               </div>
           </div>
-          </div>
+          </div></div>
     ;
   }
 }

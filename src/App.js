@@ -21,6 +21,7 @@ import Subsubsubsubcategory from './views/Category/Subsubsubsubcategory';
 
 import Message from './views/Message/index';
 import Messages from './views/Messages/index';
+import MessageSent from './views/MessageSent/index';
 
 import Signup from './views/Signup/index';
 import TribePage from './views/TribePage/index';
@@ -108,6 +109,7 @@ class App extends Component {
 
           <Route exact path="/message" component={Message} />
           <Route exact path="/messages" component={Messages} />
+          <Route exact path="/messagesent" component={MessageSent} />
 
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/tribepage" component={TribePage} />
