@@ -36,6 +36,7 @@ export default class Signup extends Component {
         updates[`/users/${uid}/username`] = username;
         updates[`/users/${uid}/email`] = email;
         updates[`/foods/banana/eaten`] = true;
+        
 
         firebase
           .database()
