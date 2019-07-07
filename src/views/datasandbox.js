@@ -45,6 +45,7 @@ export default class DataSandBox extends Component {
 
     databaseUpdates[`/comments/${uniqueId}/userId`] = currentUser.id;
     databaseUpdates[`/comments/${uniqueId}/comment`] = this.state.comment;
+    databaseUpdates[`/comments/${uniqueId}/votes`] = 0;
 
     databaseUpdates[
       `/users/${currentUser.id}/comments/${uniqueId}/comment`
@@ -55,6 +56,7 @@ export default class DataSandBox extends Component {
     ] = this.state.comment;
     databaseUpdates[`/tribes/${currentTribe.id}/comments/${uniqueId}/userId`] =
       currentUser.id;
+    databaseUpdates[`/tribes/${currentTribe.id}/comments/${uniqueId}/votes`] = 0
 
     database
       .ref()

@@ -43,12 +43,14 @@ sendMessage() {
     // 3. What's the message?
     // 4. When am I sending it (date)?
   
-    databaseUpdates[`/user/user1/messages/user2/${uniqueId}/message`] = this.state.message;
+    databaseUpdates[`/users/user-1/messages/user-2/${uniqueId}/message`] = this.state.message;
     databaseUpdates[`/users/user-1/messages/user-2/${uniqueId}/sender/`] = 'user-1';
+    databaseUpdates[`/users/user-1/messages/user-2/${uniqueId}/recipient/`] = 'user-2';
     databaseUpdates[`/users/user-1/messages/user-2/${uniqueId}/date/`] = Date.now()
   
-    databaseUpdates[`/user/user2/messages/user1/${uniqueId}/message`] = this.state.message;
+    databaseUpdates[`/users/user-2/messages/user-1/${uniqueId}/message`] = this.state.message;
     databaseUpdates[`/users/user-2/messages/user-1/${uniqueId}/sender/`] = 'user-1';
+    databaseUpdates[`/users/user-2/messages/user-1/${uniqueId}/recipient/`] = 'user-2';
     databaseUpdates[`/users/user-2/messages/user-1/${uniqueId}/date/`] = Date.now()
   
   
@@ -69,7 +71,7 @@ sendMessage() {
               <div className="message__line"></div>
               <input
                     onChange={e=>this.setState({ message: e.target.value})} 
-                    type="text" className="message__write" placeholder="Hey dude"></input>
+                    type="text" className="message__write" placeholder="type"></input>
               </div>
               <div className="message__header">
               <div className="message__header--info">

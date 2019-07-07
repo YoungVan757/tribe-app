@@ -1,34 +1,68 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import FormField from '../../components/FormField';
+import firebase from 'firebase';
+import Signup from '../Signup';
+import About from '../About';
 
 export default class Homepage extends Component {
+  constructor(props) {
+    super(props) ;
+    this.state = {
+      email: '',
+      password: '',
+    };
+  };
+
+  login() {
+  var email = document.getElementById('emailInput').value;
+  var password = document.getElementById('passwordInput').value;
+  if (email.length < 4) {
+    alert('Please enter an email address.');
+    return;
+  }
+  if (password.length < 4) {
+    alert('Please enter a password.');
+    return;
+  }
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // ...
+  });
+}
+
   render() {
     return (
-      <div claasName="container">
+      <div className="container">
         <div className="backyard">
           <div className="flex__container">
             <div className="homepage__heading">Tribe</div>
-              <FormField
+              <input
+              className="form-field"
+                id="emailInput"
                 title="Email"
-                inputType="text"
-                color="gold"
-                borderColor="gold"
-              />
-              <FormField
+                inputType="email"
+                style= {{color: "gold"}}
+                onChange={this.handleChange}
+                placeholder="type email"
+              ></input>
+              <input
+              className="form-field"
+              id="passwordInput"
                 title="Password"
                 inputType="password"
-                color="firebrick"
-                borderColor="firebrick"
-              />
-            <Link to="/profile/index" className="login__link">
-            Log In
+                style= {{color: "firebrick"}}
+                onChange={this.handleChange}
+                placeholder="type password"
+              ></input>
+            <Link to="/profile/index"><button className="login__link" type="submit" onClick={this.login()}>Log In</button>
           </Link>
 
               <div className="homepage__or"> or</div>
 
-              <Link to="/signup" className="signup__link">
-            Sign Up
+              <Link to="/signup" className="signup__link">Sign Up
           </Link>
           <Link to="/forgotpassword" className="link">Forgot password?</Link>
           </div>
