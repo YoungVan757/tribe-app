@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import Hero from '../../components/Hero';
 import ProfileImg from '../../components/ProfileImg';
 import Tribe from '../../components/Tribe';
@@ -9,6 +10,7 @@ export default class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isAuthenticated: true,
       user: false
     };
   }
@@ -26,24 +28,33 @@ export default class Profile extends Component {
       };
 
       this.setState({
-        user
+        user,
+        isAuthenticated: true
+      });
+    } else {
+      this.setState({
+        isAuthenticated: false
       });
     }
   }
 
   logout() {
-    firebase.auth().signOut()
+    firebase.auth().signOut();
   }
 
   render() {
-    return <div className="container">
-                  <div className="profile">
-                    <Hero />
-                    <ProfileImg />
-                  </div>
-                    <Tribe />
-                    <Board />
-                    <button onClick={this.logout()}>Log out</button>
-               </div>;
+    if (!this.state.isAuthenticated) return <Redirect to="/" />;
+
+    return (
+      <div className="container">
+        <div className="profile">
+          <Hero />
+          <ProfileImg />
+        </div>
+        <Tribe />
+        <Board />
+        <button onClick={this.logout()}>Log out</button>
+      </div>
+    );
   }
 }

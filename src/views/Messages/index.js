@@ -1,28 +1,48 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import firebase from 'firebase';
 
 export default class Messages extends Component {
   constructor(props) {
     super(props);
-    this.state={
-      message:'',
+    this.state = {
+      isAuthenticated: true,
+      message: ''
     };
   }
 
   componentDidMount() {
+    const uid = window.localStorage.getItem('tribe_uid');
+    const username = window.localStorage.getItem('tribe_username');
+
+    console.log('uid', uid, 'username', username);
+
+    if (uid && username) {
+      const user = {
+        uid,
+        username
+      };
+
+      this.setState({
+        user,
+        isAuthenticated: true
+      });
+    } else {
+      this.setState({
+        isAuthenticated: false
+      });
+    }
     this.fetchData();
   }
 
   fetchData() {
-
     const uniqueId = Date.now();
 
     firebase
       .database()
       .ref(`/users/user1/messages/user2/${uniqueId}/message`)
       .once('value')
-      .then(snap=>{
+      .then(snap => {
         const message = snap.val();
         this.setState({
           message
@@ -32,18 +52,16 @@ export default class Messages extends Component {
 
   renderMessage() {
     const message =
-    this.state.message &&
-    Object.keys(this.state.message).map(k=>{
-      const singleMessage = this.state.message[k];
-      return (
-        <div>
-          {singleMessage.message}
-        </div>
-      );
-    });
+      this.state.message &&
+      Object.keys(this.state.message).map(k => {
+        const singleMessage = this.state.message[k];
+        return <div>{singleMessage.message}</div>;
+      });
     return message;
   }
   render() {
+    if (!this.state.isAuthenticated) return <Redirect to="/" />;
+
     return (
       <div className="message__container">
         <div className="message__button">

@@ -32,8 +32,7 @@ export default class Favs extends Component {
     const updates = {};
 
     updates[
-      `tribes/${currentTribe.id}/userId/
-                                    ${currentUser.id}/following`
+      `tribes/${currentTribe.id}/userId/${currentUser.id}/following`
     ] = true;
 
     firebase

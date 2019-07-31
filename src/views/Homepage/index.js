@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import FormField from '../../components/FormField';
 import firebase from 'firebase';
 import Signup from '../Signup';
@@ -11,26 +11,25 @@ export default class Homepage extends Component {
     this.state = {
       email: '',
       password: '',
-      user: false
+      username: '',
+      user: false,
+      shouldRedirect: false
     };
   }
 
   componentDidMount() {
-    const uid = window.localStorage.getItem('tribe_uid');
-    const username = window.localStorage.getItem('tribe_username');
-
-    console.log('uid', uid, 'username', username);
-
-    if (uid && username) {
-      const user = {
-        uid,
-        username
-      };
-
-      this.setState({
-        user
-      });
-    }
+    // const uid = window.localStorage.getItem('tribe_uid');
+    // const username = window.localStorage.getItem('tribe_username');
+    // console.log('uid', uid, 'username', username);
+    // if (uid && username) {
+    //   const user = {
+    //     uid,
+    //     username
+    //   };
+    //   this.setState({
+    //     user
+    //   });
+    // }
   }
 
   login() {
@@ -47,6 +46,31 @@ export default class Homepage extends Component {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
+      .then(u => {
+        // SET THE USER INFO..
+
+        const userId = u.user.uid;
+
+        firebase
+          .database()
+          .ref(`/users/${userId}`)
+          .once('value')
+          .then(whatever => {
+            console.log('THE USER ENTRY', whatever.val());
+
+            const { username } = whatever.val();
+
+            window.localStorage.setItem('tribe_uid', userId);
+            window.localStorage.setItem('tribe_username', username);
+
+            this.setState({
+              username,
+              shouldRedirect: true
+            });
+          });
+
+        // SET STATE TO REDIRECT...
+      })
       .catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
@@ -65,7 +89,7 @@ export default class Homepage extends Component {
             className="form-field"
             id="emailInput"
             title="Email"
-            inputType="email"
+            type="email"
             style={{ color: 'gold' }}
             onChange={this.handleChange}
             placeholder="type email"
@@ -74,20 +98,20 @@ export default class Homepage extends Component {
             className="form-field"
             id="passwordInput"
             title="Password"
-            inputType="password"
+            type="password"
             style={{ color: 'firebrick' }}
             onChange={this.handleChange}
             placeholder="type password"
           />
-          <Link to="/profile/index">
-            <button
-              className="login__link"
-              type="submit"
-              onClick={() => this.login()}
-            >
-              Log In
-            </button>
-          </Link>
+
+          <button
+            className="login__link"
+            type="submit"
+            onClick={() => this.login()}
+          >
+            Log In
+          </button>
+
           <div className="homepage__or"> or</div>
 
           <Link to="/signup" className="signup__link">
@@ -104,6 +128,10 @@ export default class Homepage extends Component {
   }
 
   render() {
+    if (this.state.shouldRedirect) {
+      return <Redirect to={`/profile/${this.state.username}`} />;
+    }
+
     return (
       <div className="container">
         <div className="backyard">
