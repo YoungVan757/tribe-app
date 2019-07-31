@@ -49,7 +49,7 @@ class App extends Component {
               <Link to="/forgotpassword">Forgot Password</Link>
             </li>
             <li>
-              <Link to="/profile/van">Van's Profile</Link>
+              <Link to="/profile/:username">Profile</Link>
             </li>
             <li>
               <Link to="/categories">Catagories</Link>
@@ -92,8 +92,7 @@ class App extends Component {
             component={Subcategory}
           />
           <Route
-            exact
-            path="/category/:categoryName/:subCategory/:subSubcategory"
+            exact path="/category/:categoryName/:subCategory/:subSubcategory"
             component={Subsubcategory}
           />
           <Route

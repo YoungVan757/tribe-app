@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Button from '../components/PostButton';
 import Arrows from '../components/Arrows';
 import Trash from '../components/Trash';
 import Flag from '../components/Flag';
@@ -9,8 +8,9 @@ export default class CommentBox extends Component {
     constructor(props) {
         super(props) ;
         this.state={
-            comment:'',
-            comments:[]
+            tribepage: {},
+            tribecomment:'',
+            tribecomments:[]
         };
     }
 
@@ -31,13 +31,27 @@ export default class CommentBox extends Component {
             });
     }
 
+    deleteComment(commentId) {
+        const updates = {};
+        updates[`/comments/${commentId}`] = null;
+    
+        firebase
+          .database()
+          .ref()
+          .update(updates)
+          .then(() => {
+            this.fetchData()
+          })
+    
+      }
+
     saveComment(){
         const database = firebase.database();
         const iD = Date.now();
         database
-            .ref(`/comments/${iD}`)
+            .ref(`/tribepage/tribecomments/${iD}`)
             .set({
-                comment: this.state.comment
+                tribecomment: this.state.tribecomment
             })
             .then( ()=> {
                 this.fetchData();
@@ -47,7 +61,7 @@ export default class CommentBox extends Component {
     renderComments(){
         const comments = 
         this.state.comments &&
-        Object.keys(this.state.comments).map(k=>{
+        Object.keys(this.state.comments).map( k => {
             const singleComment = this.state.comments[k];
             return ( 
                 <div className='comment__box'>
@@ -55,11 +69,11 @@ export default class CommentBox extends Component {
                     </div>
                     <Arrows />
                  <Flag />
-                 <Trash/>
+                 <Trash deleteComment={() => this.deleteComment(k)}/>
                 </div>
                
-            )
-        });
+                     )
+                 });
         return comments;
     }
 

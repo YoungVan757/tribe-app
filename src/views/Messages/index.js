@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../../components/Button';
 import firebase from 'firebase';
 
 export default class Messages extends Component {
@@ -21,7 +20,7 @@ export default class Messages extends Component {
 
     firebase
       .database()
-      .ref(`/user/user1/messages/user2/${uniqueId}/message`)
+      .ref(`/users/user1/messages/user2/${uniqueId}/message`)
       .once('value')
       .then(snap=>{
         const message = snap.val();

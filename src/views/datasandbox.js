@@ -74,7 +74,7 @@ export default class DataSandBox extends Component {
       .then(snapshot => {
         console.log('USER SNAPSHOT', snapshot.val());
         const user = snapshot.val();
-        alert(`${user.fullName} posted this!`);
+        alert(`this.state.${user.username} posted this!`);
       });
   }
 

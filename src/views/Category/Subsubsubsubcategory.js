@@ -6,6 +6,8 @@ import Boutiques from './Geography/GeoCountry/StateProvince/City/Boutiques';
 import Parks from './Geography/GeoCountry/StateProvince/City/Parks';
 import Restaurants from './Geography/GeoCountry/StateProvince/City/Restaurants';
 
+import Grouper from './Art/Music/ArtistGroup/Rock/Grouper/index';
+
 export default class Subsubsubsubcategory extends Component {
   constructor(props) {
     super(props);
@@ -13,6 +15,12 @@ export default class Subsubsubsubcategory extends Component {
   }
 
   renderSubsubsubsubcatagoryDetails(subSubsubsubcategory) {
+
+    // ART / MUSIC / ARTIST-GROUP / ROCK
+    
+    if (subSubsubsubcategory === 'grouper') {
+      return <Grouper />;
+    }
 
     // GEOGRAPHY / COUNTRY / STATE-PROVINCE / CITY
 
@@ -28,8 +36,6 @@ export default class Subsubsubsubcategory extends Component {
     if (subSubsubsubcategory === 'restaurants') {
         return <Restaurants />;
       } 
-
-    
     
   }
 
@@ -39,11 +45,15 @@ export default class Subsubsubsubcategory extends Component {
       <div>
         <h1>
           You are on{' '}
-          {`/category/${this.props.match.params.categoryName}/${this.props.match.params.subCategory}
-          /${this.props.match.params.subSubcategory}/${this.props.match.params.subSubsubcategory}/${this.props.match.params.subSubsubsubcategory}`}{' '} Page
-        </h1>
+          {`/category/
+          ${this.props.match.params.categoryName}/
+          ${this.props.match.params.subCategory}/
+          ${this.props.match.params.subSubcategory}/
+          ${this.props.match.params.subSubsubcategory}/
+          ${this.props.match.params.subSubsubsubcategory}`}{' '} Page
+        
         {this.renderSubsubsubsubcatagoryDetails(this.props.match.params.subSubsubsubcategory)}
-      </div>
+    </h1>  </div>
     );
   }
 }

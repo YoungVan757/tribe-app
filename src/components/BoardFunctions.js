@@ -8,7 +8,11 @@ export default class BoardFunctions extends Component {
     super(props);
     this.state = {
       comment: '',
+      users: '',
+      user:'',
+      uid:'',
       comments: []
+      
     };
   }
 
@@ -19,7 +23,7 @@ export default class BoardFunctions extends Component {
   fetchData() {
     firebase
       .database()
-      .ref('/comments')
+      .ref('/comments/')
       .once('value')
       .then(snapshot => {
         const comments = snapshot.val();
@@ -31,12 +35,20 @@ export default class BoardFunctions extends Component {
 
   saveComment() {
     const database = firebase.database();
-    const iD = Date.now();
+    const commentId = Date.now();
+    const username = window.localStorage.getItem('tribe_username');
+    const uid = window.localStorage.getItem('tribe_uid')
+
+    const databaseSet = {};
+
+    databaseSet[`/comments/${commentId}/comment/`] = this.state.comment;
+    databaseSet[`/comments/${commentId}/author/`] = username
+
+    databaseSet[`/users/${uid}/comments/comment`] = this.state.comment;
+    
     database
-      .ref(`comments/${iD}`)
-      .set({
-        comment: this.state.comment
-      })
+      .ref()
+      .update(databaseSet)
       .then(() => {
         this.fetchData();
       });
@@ -63,7 +75,7 @@ export default class BoardFunctions extends Component {
         const singleComment = this.state.comments[k];
         return (
           <div className="board__comments">
-            {singleComment.comment}
+            {singleComment.comment} 
             <Trash deleteComment={() => this.deleteComment(k)} />
             <div className="user__img" />
           </div>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import { storage } from 'firebase';
 
-export default class ProfileImg extends Component {
+export default class TribeProfileImg extends Component {
   constructor(props) {
     super(props);
     this.state = {

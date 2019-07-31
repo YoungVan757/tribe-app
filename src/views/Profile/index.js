@@ -8,43 +8,42 @@ import firebase from 'firebase';
 export default class Profile extends Component {
   constructor(props) {
     super(props);
-    this.logout = this.logout.bind(this);
     this.state = {
-      username: ''
+      user: false
     };
   }
 
   componentDidMount() {
-    console.log("profile props", this.props)
-    this.setProfileName(this.props.match.params['username']);
-  }
+    const uid = window.localStorage.getItem('tribe_uid');
+    const username = window.localStorage.getItem('tribe_username');
 
-  componentWillReceiveProps(nProps) {
-    this.setProfileName(nProps.match.params['username']);
-  }
+    console.log('uid', uid, 'username', username);
 
-  setProfileName(profileName) {
-    this.setState({
-      username: profileName
-    });
+    if (uid && username) {
+      const user = {
+        uid,
+        username
+      };
+
+      this.setState({
+        user
+      });
+    }
   }
 
   logout() {
-    firebase.auth().signOut();
+    firebase.auth().signOut()
   }
 
   render() {
-    return <div>This is the profile of {this.state.username}
-              <div className="container">
+    return <div className="container">
                   <div className="profile">
                     <Hero />
                     <ProfileImg />
                   </div>
                     <Tribe />
                     <Board />
-                    <button onClick={this.logout}>Log out</button>
-               </div>
-
-           </div>;
+                    <button onClick={this.logout()}>Log out</button>
+               </div>;
   }
 }

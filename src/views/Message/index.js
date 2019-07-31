@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import MessageRead from '../../components/MessageRead';
-import MessageHeader from '../../components/MessageHeader';
 import firebase from 'firebase';
 
 export default class Message extends Component {
@@ -34,6 +33,7 @@ sendMessage() {
   
     const database = firebase.database();
     const uniqueId = Date.now();
+    const uid = window.localStorage.getItem('tribe_uid');
   
     const databaseUpdates = {};
     // SENDING MESSAGES..
@@ -43,15 +43,15 @@ sendMessage() {
     // 3. What's the message?
     // 4. When am I sending it (date)?
   
-    databaseUpdates[`/users/user-1/messages/user-2/${uniqueId}/message`] = this.state.message;
-    databaseUpdates[`/users/user-1/messages/user-2/${uniqueId}/sender/`] = 'user-1';
-    databaseUpdates[`/users/user-1/messages/user-2/${uniqueId}/recipient/`] = 'user-2';
-    databaseUpdates[`/users/user-1/messages/user-2/${uniqueId}/date/`] = Date.now()
+    databaseUpdates[`/users/${uid}/messages/user-2/${uniqueId}/message`] = this.state.message;
+    databaseUpdates[`/users/${uid}/messages/user-2/${uniqueId}/sender/`] = uid;
+    databaseUpdates[`/users/${uid}/messages/user-2/${uniqueId}/recipient/`] = 'user-2';
+    databaseUpdates[`/users/${uid}/messages/user-2/${uniqueId}/date/`] = Date.now()
   
-    databaseUpdates[`/users/user-2/messages/user-1/${uniqueId}/message`] = this.state.message;
-    databaseUpdates[`/users/user-2/messages/user-1/${uniqueId}/sender/`] = 'user-1';
-    databaseUpdates[`/users/user-2/messages/user-1/${uniqueId}/recipient/`] = 'user-2';
-    databaseUpdates[`/users/user-2/messages/user-1/${uniqueId}/date/`] = Date.now()
+    databaseUpdates[`/users/user-2/messages/${uid}/${uniqueId}/message`] = this.state.message;
+    databaseUpdates[`/users/user-2/messages/${uid}/${uniqueId}/sender/`] = uid;
+    databaseUpdates[`/users/user-2/messages/${uid}/${uniqueId}/recipient/`] = 'user-2';
+    databaseUpdates[`/users/user-2/messages/${uid}/${uniqueId}/date/`] = Date.now()
   
   
     database
@@ -76,6 +76,7 @@ sendMessage() {
               <div className="message__header">
               <div className="message__header--info">
               <div> To:<input type="text"
+              
                               placeholder="type username"></input>
                               </div><br></br>
               <div>Subject:<input type="text"

@@ -71,7 +71,7 @@ export default class Signup extends Component {
 
   render() {
     if (this.state.shouldRedirect) {
-      return <Redirect to="/" />;
+      return <Redirect to="/profile/van" />;
     }
 
     return (

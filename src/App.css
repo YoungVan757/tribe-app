@@ -72,10 +72,10 @@
 }
 
 .profile__img {
-  width: 50%;
-  height: 85vh;
+  width: 50vw;
+  height: 75vh;
   background-position: center;
-  background-size: cover;
+  background-size: auto;
   background-image: url('http://thesource.com/wp-content/uploads/2018/08/lil-uzi-vert-gq-5.jpg');
   border: 10px solid slateblue;
 }
@@ -856,9 +856,6 @@
 
   .explore__container {
       text-align: center;
-  }
-
-  .geo {
   }
 
   .message__textboxes {

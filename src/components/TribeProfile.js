@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
-import NameComponent from './NameComponent';
+import TribeNameComponent from './TribeNameComponent';
 import Favs from './Favs';
-import ProfileImg from './ProfileImg';
+import TribeProfileImg from './TribeProfileImg';
 
 export default class TribeProfile extends Component {
+  constructor(props) {
+    super(props) ;
+    this.state = {
+        name: '',
+        members: '',
+        comments: '',
+        image: '',
+        tribename: ''
+    }
+}
     render() {
         return (
             <div className="profile">
@@ -12,11 +22,11 @@ export default class TribeProfile extends Component {
                     <Favs />
                   </div>
                   <div className="name__container">
-                    <NameComponent />
+                    <TribeNameComponent />
                   </div>
 
               </div>
-              <ProfileImg/>
+              <TribeProfileImg/>
             </div>
         )
     }
