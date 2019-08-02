@@ -5,78 +5,20 @@ import firebase from 'firebase';
 import Signup from '../Signup';
 import About from '../About';
 
-export default class Homepage extends Component {
+import { WithAuth } from '../../contexts/AuthContext';
+
+class Homepage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       email: '',
-      password: '',
-      username: '',
-      user: false,
-      shouldRedirect: false
+      password: ''
     };
   }
 
-  componentDidMount() {
-    // const uid = window.localStorage.getItem('tribe_uid');
-    // const username = window.localStorage.getItem('tribe_username');
-    // console.log('uid', uid, 'username', username);
-    // if (uid && username) {
-    //   const user = {
-    //     uid,
-    //     username
-    //   };
-    //   this.setState({
-    //     user
-    //   });
-    // }
-  }
-
   login() {
-    var email = document.getElementById('emailInput').value;
-    var password = document.getElementById('passwordInput').value;
-    if (email.length < 4) {
-      alert('Please enter an email address.');
-      return;
-    }
-    if (password.length < 4) {
-      alert('Please enter a password.');
-      return;
-    }
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(u => {
-        // SET THE USER INFO..
-
-        const userId = u.user.uid;
-
-        firebase
-          .database()
-          .ref(`/users/${userId}`)
-          .once('value')
-          .then(whatever => {
-            console.log('THE USER ENTRY', whatever.val());
-
-            const { username } = whatever.val();
-
-            window.localStorage.setItem('tribe_uid', userId);
-            window.localStorage.setItem('tribe_username', username);
-
-            this.setState({
-              username,
-              shouldRedirect: true
-            });
-          });
-
-        // SET STATE TO REDIRECT...
-      })
-      .catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // ...
-      });
+    const { email, password } = this.state;
+    this.props.authContext.handleLoginUser(email, password);
   }
 
   renderHomepageView() {
@@ -91,7 +33,7 @@ export default class Homepage extends Component {
             title="Email"
             type="email"
             style={{ color: 'gold' }}
-            onChange={this.handleChange}
+            onChange={e => this.setState({ email: e.target.value })}
             placeholder="type email"
           />
           <input
@@ -100,7 +42,7 @@ export default class Homepage extends Component {
             title="Password"
             type="password"
             style={{ color: 'firebrick' }}
-            onChange={this.handleChange}
+            onChange={e => this.setState({ password: e.target.value })}
             placeholder="type password"
           />
 
@@ -128,15 +70,24 @@ export default class Homepage extends Component {
   }
 
   render() {
-    if (this.state.shouldRedirect) {
-      return <Redirect to={`/profile/${this.state.username}`} />;
+    const { user, loginError } = this.props.authContext;
+
+    if (user) {
+      return <Redirect to={`/profile/${user.username}`} />;
     }
+
+    console.log('HOMEPAGE PROPS', this.props);
 
     return (
       <div className="container">
         <div className="backyard">
           <div className="flex__container">
             <div className="homepage__heading">Tribe</div>
+
+            {loginError ? (
+              <div style={{ color: 'red' }}>EMAIL OR PASSWORD IS WRONG!!!</div>
+            ) : null}
+
             {this.renderHomepageView()}
           </div>
         </div>
@@ -144,3 +95,5 @@ export default class Homepage extends Component {
     );
   }
 }
+
+export default WithAuth(Homepage);
