@@ -19,8 +19,16 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener('fullscreenchange', (e) => this.runMe(e))
+    // keyup happens everytime a user presses a key
+    window.addEventListener('keyup', this.runMe)
   }
+
+  componentWillUnmount() {
+    // Remove the listenser so other components don't need to worry about it
+    // once the user leaves this page.
+    window.removeEventListener('keyup', this.runMe)
+  }
+ 
 
   logout() {
     const { user } = this.state;
@@ -28,7 +36,7 @@ class Profile extends Component {
   }
 
   runMe(event) {
-    console.log("user is ins full screen mode")
+    console.log("key was pressed", event)
     // if (event.key === 'Enter' ) {
     //   alert("you pressed the magic key");
     //   // submit the post..
