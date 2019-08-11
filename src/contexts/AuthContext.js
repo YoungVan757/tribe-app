@@ -94,7 +94,7 @@ export class AuthProvider extends Component {
 
   handleLogoutUser() {
     firebase.auth().signOut().then(()=> {
-      alert('logged out');
+      alert('logged out!!');
        return <Redirect to="/" />;
     
     }, function(error) {
