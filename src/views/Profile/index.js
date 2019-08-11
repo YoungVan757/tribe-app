@@ -4,47 +4,27 @@ import Hero from '../../components/Hero';
 import ProfileImg from '../../components/ProfileImg';
 import Tribe from '../../components/Tribe';
 import Board from '../../components/Board';
-import firebase from 'firebase';
+import firebase from '../../firebase';
+import { WithAuth } from '../../contexts/AuthContext';
 
-export default class Profile extends Component {
+class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isAuthenticated: true,
       user: false
     };
   }
 
-  componentDidMount() {
-    const uid = window.localStorage.getItem('tribe_uid');
-    const username = window.localStorage.getItem('tribe_username');
-
-    console.log('uid', uid, 'username', username);
-
-    if (uid && username) {
-      const user = {
-        uid,
-        username
-      };
-
-      this.setState({
-        user,
-        isAuthenticated: true
-      });
-    } else {
-      this.setState({
-        isAuthenticated: false
-      });
-    }
-  }
 
   logout() {
-    firebase.auth().signOut();
+    const { user } = this.state;
+    this.props.authContext.handleLogoutUser(user);
   }
 
   render() {
-    if (!this.state.isAuthenticated) return <Redirect to="/" />;
-
+    const { user } = this.props.authContext;
+    if (!user) {
+      return <Redirect to="/" />;}
     return (
       <div className="container">
         <div className="profile">
@@ -58,3 +38,6 @@ export default class Profile extends Component {
     );
   }
 }
+
+
+export default WithAuth(Profile);

@@ -7,10 +7,14 @@ import firebase from '../firebase';
 export default class CommentBox extends Component {
     constructor(props) {
         super(props) ;
-        this.state={
+        this.state = {
             tribepage: {},
             tribecomment:'',
-            tribecomments:[]
+            tribecomments:[],
+            users:'',
+            user:'',
+            username: '',
+            uid:'',
         };
     }
 
@@ -21,19 +25,41 @@ export default class CommentBox extends Component {
     fetchData() {
         firebase
             .database()
-            .ref('/comments')
+            .ref('/tribepage/')
             .once('value')
-            .then(snapshot=>{
-                const comments = snapshot.val();
+            .then(snapshot => {
+                const tribecomments = snapshot.val();
                 this.setState({
-                    comments
+                    tribecomments
                 });
             });
     }
 
+    saveComment() {
+        const database = firebase.database();
+        const commentId = Date.now();
+        const username = window.localStorage.getItem('tribe_username');
+        const uid = window.localStorage.getItem('tribe_uid')
+
+        const databaseSet = {};
+
+        databaseSet[`/tribepage/tribecomments/${commentId}/tribecomment/`] = this.state.tribecomment;
+        databaseSet[`/tribepage/tribecomments/${commentId}/author/`] = username
+
+        databaseSet[`/users/${uid}/tribepagecomments/tribecomment`] = this.state.tribecomment;
+        databaseSet[`/users/${uid}/tribepagecomments/tribepage`] = this.state.tribecomment;
+
+        database
+            .ref()
+            .update(databaseSet)
+            .then(() => {
+                this.fetchData();
+            });
+        }
+
     deleteComment(commentId) {
         const updates = {};
-        updates[`/comments/${commentId}`] = null;
+        updates[`/tribepage/tribecomments${commentId}`] = null;
     
         firebase
           .database()
@@ -44,70 +70,52 @@ export default class CommentBox extends Component {
           })
     
       }
-
-    saveComment(){
-        const database = firebase.database();
-        const iD = Date.now();
-        database
-            .ref(`/tribepage/tribecomments/${iD}`)
-            .set({
-                tribecomment: this.state.tribecomment
-            })
-            .then( ()=> {
-                this.fetchData();
-            });
-    }
-
     renderComments(){
-        const comments = 
-        this.state.comments &&
-        Object.keys(this.state.comments).map( k => {
-            const singleComment = this.state.comments[k];
+        const tribecomments = 
+        this.state.tribecomments &&
+        Object.keys(this.state.tribecomments).map( k => {
+            const singleComment = this.state.tribecomments[k];
             return ( 
                 <div className='comment__box'>
-                    {singleComment.comment} <div className="user__img">
+                    {singleComment.tribecomment} <div className="user__img">
                     </div>
                     <Arrows />
                  <Flag />
                  <Trash deleteComment={() => this.deleteComment(k)}/>
                 </div>
                
-                     )
+                     );
                  });
-        return comments;
+        return tribecomments;
     }
-
     render() {
         return (
-    <div className="comment__container">
-        <div>  
-            <div className="comment">
+         <div className="comment__container">
+             <div>  
+               <div className="comment">
                     <div className="comment__functions">
+                    <div className="comment__avatar"></div>
                         <div className="comment__input--avatar">
-                            <input onChange={e=> this.setState({ comment: e.target.value})} type="text" 
-                            placeholder="type" 
-                            class="comment__input"/>
-                            <div className="comment__avatar"></div>
-                        </div>
-                        <div className="comment__buttons">
-                            <button onClick={()=>{this.saveComment()}} className="comment__post" title="post" fontSize="14px">post</button>
-                           
-                        </div>
-                        
-                    </div>
-                    
-            </div>
-                
-        </div>          
-            
-            
-        <div >
-           {this.renderComments()} 
-        </div>
-
-        </div> 
-        
-        
+                            <input 
+                                onChange={e=> this.setState({ tribecomments: e.target.value})} 
+                                type="text" 
+                                placeholder="type" 
+                                className="comment__input"
+                            />
+                            <button 
+                                onClick={()=>{this.saveComment()}} 
+                                className="comment__post" 
+                                title="post" 
+                                fontSize="14px"
+                            >
+                                post
+                            </button>        
+                        </div>  
+                         <div >{this.renderComments()}</div>     
+                    </div>       
+            </div>     
+        </div>                   
+        </div>       
         );
-}
+    }
 }

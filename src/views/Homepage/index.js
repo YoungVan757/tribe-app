@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import FormField from '../../components/FormField';
-import firebase from 'firebase';
-import Signup from '../Signup';
-import About from '../About';
-
+import firebase from '../../firebase';
 import { WithAuth } from '../../contexts/AuthContext';
 
 class Homepage extends Component {

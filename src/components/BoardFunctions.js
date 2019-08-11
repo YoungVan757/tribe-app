@@ -44,7 +44,8 @@ export default class BoardFunctions extends Component {
     databaseSet[`/comments/${commentId}/comment/`] = this.state.comment;
     databaseSet[`/comments/${commentId}/author/`] = username
 
-    databaseSet[`/users/${uid}/comments/comment`] = this.state.comment;
+    databaseSet[`/users/${uid}/profilecomments/comment`] = this.state.comment;
+    //must add endpoint for other user page
     
     database
       .ref()

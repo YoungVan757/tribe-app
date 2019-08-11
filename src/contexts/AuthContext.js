@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from '../firebase';
+import { Redirect } from 'react-router-dom';
 
 export const AuthContext = React.createContext(null);
 
@@ -14,7 +15,9 @@ export class AuthProvider extends Component {
 
     this.actions = {
       handleLoginUser: (email, password) =>
-        this.handleLoginUser(email, password)
+        this.handleLoginUser(email, password),
+        handleLogoutUser: () =>
+        this.handleLogoutUser()
     };
   }
 
@@ -87,6 +90,17 @@ export class AuthProvider extends Component {
         var errorMessage = error.message;
         // ...
       });
+  }
+
+  handleLogoutUser() {
+    firebase.auth().signOut().then(()=> {
+      alert('logged out');
+       return <Redirect to="/" />;
+    
+    }, function(error) {
+      alert('error')
+    });
+  
   }
 
   render() {

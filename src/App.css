@@ -767,6 +767,9 @@
   color: white;
 }
 
+.board-post:hover {
+  width: 400px;
+}
 
 /* MEDIA QUERIES */
 
