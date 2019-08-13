@@ -18,6 +18,15 @@ class Homepage extends Component {
   }
 
   renderHomepageView() {
+<<<<<<< HEAD
+=======
+
+    // SUGGESTION: Maybe make the sign up link a secondary style. 
+
+    // Also, can remove !user check, becasue this function "renderHomepageView" only
+    // runs if there is no user anyway.. check the render method for ref.
+
+>>>>>>> bd4efe8bc0d7a76150abef0e6f8beea921ea29f1
     const { user } = this.props.authContext;
 
     if (!user) {
@@ -51,6 +60,7 @@ class Homepage extends Component {
           </button>
 
           <div className="homepage__or"> or</div>
+
 
           <Link to="/signup" className="signup__link">
             Sign Up
