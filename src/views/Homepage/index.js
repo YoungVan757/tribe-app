@@ -18,7 +18,7 @@ class Homepage extends Component {
   }
 
   renderHomepageView() {
-    const { user } = this.state;
+    const { user } = this.props.authContext;
 
     if (!user) {
       return (
