@@ -41,7 +41,6 @@ class App extends Component {
     `
     return (
       <div css={style} className="App">
-        
         <Router>
         <Navbar />
           <ul>

@@ -19,25 +19,7 @@
   align-items: center;
 }
 
-.homepage__heading {
-  color: blue;
-  font-size: 100px;
-  font-weight: bold;
-  border: 10px solid blue;
-  background-color: white;
-  padding-left: 1%;
-  padding-right: 1%;
-}
 
-.homepage__or {
-  color: black;
-  font-size: 50px;
-  font-weight: bold;
-  border: 10px solid darkorange;
-  background-color: white;
-  padding-left: 1%;
-  padding-right: 1%;
-}
 
 .login__link {
   font-size: 50px;
@@ -191,7 +173,6 @@
 
 .form-field label {
   font-weight: bold;
-  
 }
 
 .heading {
