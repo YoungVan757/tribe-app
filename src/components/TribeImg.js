@@ -1,17 +1,52 @@
 import React, { Component } from 'react';
-import Tribe1 from './Tribe1';
-import Tribe2 from './Tribe2';
-import Tribe3 from './Tribe3';
-import { thisExpression } from '@babel/types';
+import firebase from '../firebase';
 
 export default class TribeImg extends Component {
-    render() {
-        return (
-            <div className="tribe__img">
-            <Tribe1 />
-            <Tribe2 />
-            <Tribe3 />
-            </div>
-        );
+    constructor(props) {
+        super(props);
+        this.state = {
+            tribe: '',
+            tribes: [],
+            uid: '',
+            users: []
+        }
     }
-}
+
+    componentDidMount() {
+        this.fetchData();
+      }
+    
+      fetchData() {
+        const uid = window.localStorage.getItem("tribe_uid");
+        firebase
+          .database()
+          .ref(`/users/${uid}/tribes`)
+          .once("value")
+          .then(snapshot => {
+            const users = snapshot.val();
+            this.setState({
+              users
+            });
+          });
+      }
+
+      renderTribes() {
+        const users =
+          this.state.users &&
+          Object.keys(this.state.users).map(k => {
+            const singleTribe = this.state.users[k];
+            return (
+              <div className={this.props.classN}>
+              
+               <img src={singleTribe.url}></img> 
+              </div>
+            );
+          });
+        return users;
+      }
+
+      render(){
+          return (
+              <div className='tribes'>{this.renderTribes()}</div>
+          )
+      }}

@@ -1,15 +1,13 @@
 import React, { Component } from "react";
-import firebase from "firebase";
-import { storage } from "firebase";
+import firebase from "../firebase";
 
-export default class TribeProfileImg extends Component {
+export default class AvatarTribe extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      image: null,
-      url: "",
-      tribes:[],
-      uid: ""
+      tribes: [],
+      images: '',
+      imageurl: ""
     };
   }
 
@@ -31,16 +29,15 @@ export default class TribeProfileImg extends Component {
       });
   }
 
-  
   render() {
-    
-    return (
-      
-      <div className="container">
-        
-        <img src={this.props.url} alt="Profile Img" className= {this.props.classN} />
-
-      </div>
-    );
+    const uid = window.localStorage.getItem("tribe_uid");
+    // const avatartribe= this.state.tribes.imageurl;
+    if (uid) {
+      return (
+        <div className="">
+           {/* <img src={avatartribe} alt="Profile Img" className= {this.props.classN} /> */}
+        </div>
+      );
+    }
   }
 }

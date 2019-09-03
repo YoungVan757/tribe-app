@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 
 // ART/VISUAL/3D SUBSUBSUBCATEGORY
 import Fashion from './Art/Visual/ThreeD/Fashion';
 // ART/VISUAL/2D SUBSUBSUBCATEGORY
 import Comics from './Art/Visual/TwoD/Comics';
 
-// ART/MUSIC/ARTISTGROUP SUBSUBSUBCATEGORY
-import Rock from './Art/Music/ArtistGroup/Rock';
-import HipHop from './Art/Music/ArtistGroup/HipHop';
-import Pop from './Art/Music/ArtistGroup/Pop';
-import Jazz from './Art/Music/ArtistGroup/Jazz';
-import Blues from './Art/Music/ArtistGroup/Blues';
+// // ART/MUSIC/ARTISTGROUP SUBSUBSUBCATEGORY
+import Grouper from './Art/Music/ArtistGroup/Grouper';
+import HopeSandoval from './Art/Music/ArtistGroup/HopeSandoval';
+import Dame from './Art/Music/ArtistGroup/Dame';
+import JulieDoiron from './Art/Music/ArtistGroup/JulieDoiron';
+// import HipHop from './Art/Music/ArtistGroup/HipHop';
+// import Pop from './Art/Music/ArtistGroup/Pop';
+// import Jazz from './Art/Music/ArtistGroup/Jazz';
+// import Blues from './Art/Music/ArtistGroup/Blues';
 
 // GEOGRAPHY/COUNTRY/STATE-PROVINCE SUBSUBSUBCATEGORY
 import City from './Geography/GeoCountry/StateProvince/City';
@@ -46,25 +50,33 @@ export default class Subsubsubcategory extends Component {
 
     // ART / MUSIC / ARTIST-GROUP
 
-    if (subSubsubcategory === 'rock') {
-      return <Rock />;
-    }
-
-    if (subSubsubcategory === 'hiphop') {
-      return <HipHop />;
-    }
-
-    if (subSubsubcategory === 'pop') {
-      return <Pop />;
+    if (subSubsubcategory === 'grouper') {
+      return <Grouper />;
     }
     
-    if (subSubsubcategory === 'jazz') {
-        return <Jazz />;
-      }
-    
-    if (subSubsubcategory === 'blues') {
-      return <Blues />;
+    if (subSubsubcategory === 'sandovalhope') {
+      return <HopeSandoval />;
     }
+
+    if (subSubsubcategory === 'dame') {
+      return <Dame />;
+    }
+
+    if (subSubsubcategory === 'juliedoiron') {
+      return <JulieDoiron />;
+    }
+
+    // if (subSubsubcategory === 'pop') {
+    //   return <Pop />;
+    // }
+    
+    // if (subSubsubcategory === 'jazz') {
+    //     return <Jazz />;
+    //   }
+    
+    // if (subSubsubcategory === 'blues') {
+    //   return <Blues />;
+    // }
 
     // GEOGRAPHY / COUNTRY / STATE-PROVINCE
 
@@ -96,7 +108,10 @@ export default class Subsubsubcategory extends Component {
     console.log('subcategory prps', this.props);
     return (
       <div>
-        <label>Sub sub sub category</label>
+        <Link to={`/category/
+          ${this.props.match.params.categoryName}/
+          ${this.props.match.params.subCategory}/
+          ${this.props.match.params.subSubcategory}`}>Back</Link>
         <h1>
           You are on{' '}
           {`/category/

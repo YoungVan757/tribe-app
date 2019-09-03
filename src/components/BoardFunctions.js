@@ -1,18 +1,17 @@
-import React, { Component } from 'react';
-import PostButtons from '../components/PostButton';
-import Trash from '../components/Trash';
-import firebase from '../firebase';
+import React, { Component } from "react";
+import Trash from "../components/Trash";
+import Avatar from '../components/Avatar';
+import firebase from "../firebase";
 
 export default class BoardFunctions extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      comment: '',
-      users: '',
-      user:'',
-      uid:'',
+      comment: "",
+      users: "",
+      user: "",
+      uid: "",
       comments: []
-      
     };
   }
 
@@ -21,10 +20,11 @@ export default class BoardFunctions extends Component {
   }
 
   fetchData() {
+    const uid = window.localStorage.getItem("tribe_uid");
     firebase
       .database()
-      .ref('/comments/')
-      .once('value')
+      .ref(`/users/${uid}/profilecomments`)
+      .once("value")
       .then(snapshot => {
         const comments = snapshot.val();
         this.setState({
@@ -36,17 +36,29 @@ export default class BoardFunctions extends Component {
   saveComment() {
     const database = firebase.database();
     const commentId = Date.now();
-    const username = window.localStorage.getItem('tribe_username');
-    const uid = window.localStorage.getItem('tribe_uid')
+    const username = window.localStorage.getItem("tribe_username");
+    const uid = window.localStorage.getItem("tribe_uid");
 
     const databaseSet = {};
 
-    databaseSet[`/comments/${commentId}/comment/`] = this.state.comment;
-    databaseSet[`/comments/${commentId}/author/`] = username
+    databaseSet[
+      `/users/${uid}/profilecomments/${commentId}/comment`
+    ] = this.state.comment;
+    databaseSet[`/users/${uid}/profilecomments/${commentId}/recipient`] =
+      "otheruser";
+    databaseSet[`/users/${uid}/profilecomments/${commentId}/date`] = Date.now();
 
-    databaseSet[`/users/${uid}/profilecomments/comment`] = this.state.comment;
+    databaseSet[
+      `/users/otheruser/commentsreceived/${commentId}/comment`
+    ] = this.state.comment;
+    databaseSet[
+      `/users/otheruser/commentsreceived/${commentId}/author`
+    ] = username;
+    databaseSet[
+      `/users/otheruser/commentsreceived/${commentId}/date`
+    ] = Date.now();
     //must add endpoint for other user page
-    
+
     database
       .ref()
       .update(databaseSet)
@@ -57,16 +69,16 @@ export default class BoardFunctions extends Component {
 
   deleteComment(commentId) {
     const updates = {};
-    updates[`/comments/${commentId}`] = null;
+    const uid = window.localStorage.getItem("tribe_uid");
+    updates[`/users/${uid}/profilecomments/${commentId}`] = null;
 
     firebase
       .database()
       .ref()
       .update(updates)
       .then(() => {
-        this.fetchData()
-      })
-
+        this.fetchData();
+      });
   }
 
   renderComment() {
@@ -76,9 +88,9 @@ export default class BoardFunctions extends Component {
         const singleComment = this.state.comments[k];
         return (
           <div className="board__comments">
-            {singleComment.comment} 
+            {singleComment.comment}
             <Trash deleteComment={() => this.deleteComment(k)} />
-            <div className="user__img" />
+            <Avatar classN='user__img'/>
           </div>
         );
       });

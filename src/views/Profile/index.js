@@ -19,31 +19,30 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    // keyup happens everytime a user presses a key
-    window.addEventListener('keyup', this.runMe)
+    this.fetchData();
   }
 
-  componentWillUnmount() {
-    // Remove the listenser so other components don't need to worry about it
-    // once the user leaves this page.
-    window.removeEventListener('keyup', this.runMe)
+  fetchData() {
+    firebase
+      .database()
+      .ref('/comments/')
+      .once('value')
+      .then(snapshot => {
+        const comments = snapshot.val();
+        this.setState({
+          comments
+        });
+      });
   }
- 
+
 
   logout() {
     const { user } = this.state;
     this.props.authContext.handleLogoutUser(user);
+    return<Redirect to= '/'/>;
   }
 
-  runMe(event) {
-    console.log("key was pressed", event)
-    // if (event.key === 'Enter' ) {
-    //   alert("you pressed the magic key");
-    //   // submit the post..
-    // }
-    // console.log(e)
-  
-  }
+ 
 
   render() {
     const { user } = this.props.authContext;
@@ -58,7 +57,6 @@ class Profile extends Component {
         </div>
         <Tribe />
         <Board />
-        <button onClick={(e) =>this.runMe(e)}>Run Me</button>
         <button onClick={() => this.logout()}>Log out</button>
       </div>
     );

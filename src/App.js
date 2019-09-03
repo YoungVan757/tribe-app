@@ -11,6 +11,7 @@ import Profile from './views/Profile/index';
 import Settings from './views/Settings/index';
 import DeletePage from './views/Settings/DeletePage/index';
 import EditPage from './views/Settings/EditPage/index';
+import ChangeName from './views/Settings/EditPage/ChangeName/index';
 
 import Categories from './views/Categories/index';
 import Category from './views/Category/index';
@@ -30,11 +31,16 @@ import Tribes from './views/Tribes/index';
 import About from './views/About/index';
 
 import DataSandBox from './views/datasandbox';
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core'
 
 class App extends Component {
   render() {
+    const style = css`
+    background-color: deeppink;
+    `
     return (
-      <div className="App">
+      <div css={style} className="App">
         
         <Router>
         <Navbar />
@@ -83,6 +89,7 @@ class App extends Component {
           <Route exact path="/settings" component={Settings} />
           <Route exact path="/settings/deletepage" component={DeletePage} />
           <Route exact path="/settings/editpage" component={EditPage} />
+          <Route exact path="/settings/editpage/changename" component={ChangeName} />
 
           <Route exact path="/categories" component={Categories} />
           <Route exact path="/category/:categoryName" component={Category} />

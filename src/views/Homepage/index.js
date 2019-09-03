@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import firebase from '../../firebase';
 import { WithAuth } from '../../contexts/AuthContext';
 
 class Homepage extends Component {
@@ -8,8 +7,10 @@ class Homepage extends Component {
     super(props);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      user: false
     };
+    this.login = this.login.bind(this);
   }
 
   login() {
@@ -18,18 +19,6 @@ class Homepage extends Component {
   }
 
   renderHomepageView() {
-<<<<<<< HEAD
-=======
-
-    // SUGGESTION: Maybe make the sign up link a secondary style. 
-
-    // Also, can remove !user check, becasue this function "renderHomepageView" only
-    // runs if there is no user anyway.. check the render method for ref.
-
->>>>>>> bd4efe8bc0d7a76150abef0e6f8beea921ea29f1
-    const { user } = this.props.authContext;
-
-    if (!user) {
       return (
         <React.Fragment>
           <input
@@ -72,16 +61,14 @@ class Homepage extends Component {
       );
     }
 
-    return <h1>Welcome back, {this.state.user && this.state.user.username}</h1>;
-  }
 
   render() {
-    const { user, loginError } = this.props.authContext;
+    const { user , loginError} = this.props.authContext;
 
     if (user) {
       return <Redirect to={`/profile/${user.username}`} />;
     }
-
+  
     console.log('HOMEPAGE PROPS', this.props);
 
     return (
@@ -99,7 +86,6 @@ class Homepage extends Component {
         </div>
       </div>
     );
-  }
-}
-
+  
+  }}
 export default WithAuth(Homepage);

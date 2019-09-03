@@ -1,58 +1,44 @@
-import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
-import MessageRead from '../../components/MessageRead';
-import firebase from 'firebase';
+import React, { Component } from "react";
+import { Link, Redirect } from "react-router-dom";
+import MessageRead from "../../components/MessageRead";
+import firebase from "firebase";
+import { WithAuth } from "../../contexts/AuthContext";
 
-export default class Message extends Component {
+class Message extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isAuthenticated: false,
-      message: ''
+      uid: '',
+      users: [],
+      user:'',
+      message: "",
+      username: ""
     };
   }
 
-  componentDidMount() {
-    const uid = window.localStorage.getItem('tribe_uid');
-    const username = window.localStorage.getItem('tribe_username');
-
-    console.log('uid', uid, 'username', username);
-
-    if (uid && username) {
-      const user = {
-        uid,
-        username
-      };
-
-      this.setState({
-        user,
-        isAuthenticated: true
-      });
-    } else {
-      this.setState({
-        isAuthenticated: false
-      });
-    }
-    this.fetchData();
+    componentDidMount() {
+      this.fetchData() 
   }
 
   fetchData() {
-    firebase
-      .database()
-      .ref('/comments/')
-      .once('value')
-      .then(snapshot => {
-        const comments = snapshot.val();
-        this.setState({
-          comments
+      firebase
+        .database()
+        .ref('/users')
+        .once("value")
+        .then(snapshot => {
+          const users = snapshot.val();
+          this.setState({
+            users
+          });
         });
-      });
-  }
+    }
 
   sendMessage() {
     const database = firebase.database();
     const uniqueId = Date.now();
-    const uid = window.localStorage.getItem('tribe_uid');
+    const uid = window.localStorage.getItem("tribe_uid");
+    const users = this.state.users;
+    const otheruser = this.state.uniqueId;
 
     const databaseUpdates = {};
     // SENDING MESSAGES..
@@ -63,23 +49,25 @@ export default class Message extends Component {
     // 4. When am I sending it (date)?
 
     databaseUpdates[
-      `/users/${uid}/messages/user-2/${uniqueId}/message`
+      `/users/${uid}/messages/${uniqueId}/message`
     ] = this.state.message;
-    databaseUpdates[`/users/${uid}/messages/user-2/${uniqueId}/sender/`] = uid;
-    databaseUpdates[`/users/${uid}/messages/user-2/${uniqueId}/recipient/`] =
-      'user-2';
+    databaseUpdates[`/users/${uid}/messages/${uniqueId}/sender/`] = uid;
     databaseUpdates[
-      `/users/${uid}/messages/user-2/${uniqueId}/date/`
-    ] = Date.now();
+      `/users/${otheruser.username}/messages/${uniqueId}/recipient/`
+    ] = this.state.username;
+    databaseUpdates[`/users/${uid}/messages/${uniqueId}/date/`] = Date.now();
 
     databaseUpdates[
-      `/users/user-2/messages/${uid}/${uniqueId}/message`
+      `/users/${users.username}/messages/${uniqueId}/message`
     ] = this.state.message;
-    databaseUpdates[`/users/user-2/messages/${uid}/${uniqueId}/sender/`] = uid;
-    databaseUpdates[`/users/user-2/messages/${uid}/${uniqueId}/recipient/`] =
-      'user-2';
     databaseUpdates[
-      `/users/user-2/messages/${uid}/${uniqueId}/date/`
+      `/users/${users.username}/messages/${uniqueId}/sender/`
+    ] = uid;
+    databaseUpdates[
+      `/users/${otheruser.username}/messages/${uniqueId}/recipient/`
+    ] = this.state.username;
+    databaseUpdates[
+      `/users/${users.username}/messages/${uniqueId}/date/`
     ] = Date.now();
 
     database
@@ -91,7 +79,8 @@ export default class Message extends Component {
   }
 
   render() {
-    if (!this.state.isAuthenticated) return <Redirect to="/" />;
+    const { user } = this.props.authContext;
+    if (!user) return <Redirect to="/" />;
 
     return (
       <div className="container">
@@ -111,22 +100,14 @@ export default class Message extends Component {
           </div>
           <div className="message__header">
             <div className="message__header--info">
-              <div>
-                {' '}
-                To:<input type="text" placeholder="type username" />
-              </div>
               <br />
-              <div>
-                Subject:<input type="text" placeholder="type subject" />
-              </div>
-              <br />
-
-              <Link to="/messagesent">
+              <Link to="/messages">
                 <button
                   onClick={() => this.sendMessage()}
                   className="message__header--button"
                 >
                   <img
+                    alt="Send Icon"
                     width="220"
                     height="220"
                     src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMCAzdjE4aDI0di0xOGgtMjR6bTYuNjIzIDcuOTI5bC00LjYyMyA1LjcxMnYtOS40NThsNC42MjMgMy43NDZ6bS00LjE0MS01LjkyOWgxOS4wMzVsLTkuNTE3IDcuNzEzLTkuNTE4LTcuNzEzem01LjY5NCA3LjE4OGwzLjgyNCAzLjA5OSAzLjgzLTMuMTA0IDUuNjEyIDYuODE3aC0xOC43NzlsNS41MTMtNi44MTJ6bTkuMjA4LTEuMjY0bDQuNjE2LTMuNzQxdjkuMzQ4bC00LjYxNi01LjYwN3oiLz48L3N2Zz4="
@@ -140,3 +121,5 @@ export default class Message extends Component {
     );
   }
 }
+
+export default WithAuth(Message);

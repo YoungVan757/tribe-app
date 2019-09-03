@@ -6,8 +6,6 @@ import Boutiques from './Geography/GeoCountry/StateProvince/City/Boutiques';
 import Parks from './Geography/GeoCountry/StateProvince/City/Parks';
 import Restaurants from './Geography/GeoCountry/StateProvince/City/Restaurants';
 
-import Grouper from './Art/Music/ArtistGroup/Rock/Grouper/index';
-
 export default class Subsubsubsubcategory extends Component {
   constructor(props) {
     super(props);
@@ -15,12 +13,6 @@ export default class Subsubsubsubcategory extends Component {
   }
 
   renderSubsubsubsubcatagoryDetails(subSubsubsubcategory) {
-
-    // ART / MUSIC / ARTIST-GROUP / ROCK
-    
-    if (subSubsubsubcategory === 'grouper') {
-      return <Grouper />;
-    }
 
     // GEOGRAPHY / COUNTRY / STATE-PROVINCE / CITY
 

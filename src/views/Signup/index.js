@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import firebase from 'firebase';
 
 export default class Signup extends Component {
@@ -59,7 +59,7 @@ export default class Signup extends Component {
         var errorCode = error.code;
         var errorMessage = error.message;
         // [START_EXCLUDE]
-        if (errorCode == 'auth/weak-password') {
+        if (errorCode === 'auth/weak-password') {
           alert('The password is too weak.');
         } else {
           alert(errorMessage);

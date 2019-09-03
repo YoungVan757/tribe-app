@@ -22,11 +22,11 @@ export default class TribeProfile extends Component {
                     <Favs />
                   </div>
                   <div className="name__container">
-                    <TribeNameComponent />
+                    <TribeNameComponent tribeName={this.props.tribeName}/>
                   </div>
 
               </div>
-              <TribeProfileImg/>
+              <TribeProfileImg />
             </div>
         )
     }

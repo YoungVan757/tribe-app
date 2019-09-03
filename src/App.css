@@ -75,15 +75,13 @@
   width: 50vw;
   height: 75vh;
   background-position: center;
-  background-size: auto;
-  background-image: url('http://thesource.com/wp-content/uploads/2018/08/lil-uzi-vert-gq-5.jpg');
+  background-size: contain;
   border: 10px solid slateblue;
 }
 
 .tribe {
   display: flex;
   flex-direction: column;
-  height: 41vh;
   padding: 1%;
   border: 10px solid blue;
   background: gold;
@@ -92,40 +90,28 @@
 
 .tribe__heading {
   color: firebrick;
-  font-size: 20px;
+  font-size: 30px;
   padding-bottom: 1%;
 }
 
-.tribe__img {
+.tribes {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 80%;
+  flex-wrap: wrap;
+  padding-right: 2%;
 }
 
-.tribe1 {
-  width: 30%;
-  height: 34vh;
-  background-position: center;
-  background-size: cover;
-  background-image: url('https://factmag-images.s3.amazonaws.com/wp-content/uploads/2014/10/grouper_moon-3BW_Jason-Bokros.jpg');
-  border: 10px solid darkgreen;
-}
-
-.tribe2 {
-  width: 30%;
-  background-position: center;
-  background-size: cover;
-  background-image: url('https://a3-images.myspacecdn.com/images03/3/9959a90ba01f4d49b117cac49a4513fd/600x600.jpg');
+.atribe img{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 37vh;
+  width: 29vw;
+  margin: 3%;
   border: 10px solid darkorange;
 }
-
-.tribe3 {
-  width: 30%;
-  background-position: center;
-  background-size: cover;
-  background-image: url('https://i.ytimg.com/vi/aNGTG1yn85w/maxresdefault.jpg');
-  border: 10px solid slateblue;
-}
-
 
 .board {
   display: flex;
@@ -375,6 +361,7 @@
 }
 
 .message__write {
+  font-size: 24px;
   border-bottom: 10px solid darkgreen;
   border-left: 10px solid darkgreen;
   border-right: 10px solid darkgreen;
@@ -587,7 +574,16 @@
 .name__container {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-size: 96px;
+    font-weight: 700;
+    color:darkgreen;
+}
+
+.name__container span {
+  font-size: 28px;
+  color: gold;
 }
 
 .name {
@@ -646,27 +642,22 @@
 .comment__functions {
   display: flex;
   flex-direction: column;
-  width: 65%;
+  width: 100%;
+}
+
+.comment__input--box {
+  display: flex;
 }
 
 .comment__input {
+  display: flex;
   height: 25vh;
   width: 90%;
   border: 10px solid gold;
 }
 
-.comment__avatar {
-  display: none;
-}
-
-.comment__buttons {
-  display: flex;
-  justify-content: space-between;
-  width: 90%
-}
-
 .comment__post {
-  margin-top: 2%;
+  margin-left: 1%;
   font-size: 40px;
   font-weight: bold;
   border: 10px solid firebrick;
@@ -769,6 +760,14 @@
 
 .board-post:hover {
   width: 400px;
+}
+
+
+.join__button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* background-color: hotpink; */
 }
 
 /* MEDIA QUERIES */
