@@ -1,20 +1,20 @@
-import React, { Component } from "react";
-import Arrows from "../components/Arrows";
-import Trash from "../components/Trash";
-import Flag from "../components/Flag";
+import React, { Component } from 'react';
+import Arrows from '../components/Arrows';
+import Trash from '../components/Trash';
+import Flag from '../components/Flag';
 import Avatar from '../components/Avatar';
-import firebase from "../firebase";
+import firebase from '../firebase';
 
 export default class CommentBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
       tribes: [],
-      comment: "",
+      comment: '',
       comments: [],
-      users: "",
-      user: "",
-      uid: ""
+      users: '',
+      user: '',
+      uid: ''
     };
     this.renderComments = this.renderComments.bind(this);
     this.saveComment = this.saveComment.bind(this);
@@ -29,9 +29,13 @@ export default class CommentBox extends Component {
     firebase
       .database()
       .ref(`/tribes/${tribeName}/comments`)
-      .once("value")
+      .once('value')
       .then(snapshot => {
+        console.log('snapshot', snapshot);
+
         const comments = snapshot.val();
+
+        console.log(comments);
         this.setState({
           comments
         });
@@ -41,8 +45,8 @@ export default class CommentBox extends Component {
   saveComment() {
     const database = firebase.database();
     const commentId = Date.now();
-    const username = window.localStorage.getItem("tribe_username");
-    const uid = window.localStorage.getItem("tribe_uid");
+    const username = window.localStorage.getItem('tribe_username');
+    const uid = window.localStorage.getItem('tribe_uid');
     const tribeName = this.props.tribeName;
 
     const databaseSet = {};
@@ -71,7 +75,7 @@ export default class CommentBox extends Component {
   deleteComment(commentId) {
     const tribeName = this.props.tribeName;
     const updates = {};
-    const uid = window.localStorage.getItem("tribe_uid");
+    const uid = window.localStorage.getItem('tribe_uid');
     updates[`/tribes/${tribeName}/comments/${commentId}`] = null;
     updates[`/users/${uid}/tribes/${tribeName}/comments/${commentId}`] = null;
 
@@ -91,14 +95,15 @@ export default class CommentBox extends Component {
         const singleComment = this.state.comments[k];
         return (
           <div className="comment__box">
-            <div> {singleComment.comment} </div><Avatar classN='user__img'/>
+            <div> {singleComment.comment} </div>
+            <Avatar classN="user__img" />
             <Arrows />
             <Flag />
             <Trash deleteComment={() => this.deleteComment(k)} />
           </div>
         );
       });
-    return comments;
+    return comments
   }
   render() {
     return (
@@ -118,7 +123,6 @@ export default class CommentBox extends Component {
                   className="comment__post"
                   title="post"
                   fontSize="24px"
-                  
                 >
                   post
                 </button>
