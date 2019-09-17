@@ -80,6 +80,7 @@ export default class BoardFunctions extends Component {
         this.fetchData();
       });
   }
+  
 
   renderComment() {
     const comments =
@@ -87,7 +88,7 @@ export default class BoardFunctions extends Component {
       Object.keys(this.state.comments).map(k => {
         const singleComment = this.state.comments[k];
         return (
-          <div className="board__comments">
+          <div key={k} className="board__comments">
             {singleComment.comment}
             <Trash deleteComment={() => this.deleteComment(k)} />
             <Avatar classN='user__img'/>

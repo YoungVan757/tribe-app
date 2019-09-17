@@ -9,6 +9,7 @@ export class AuthProvider extends Component {
     super(props);
 
     this.state = {
+      allUsers: [],
       user: false,
       loginError: false
     };
@@ -25,7 +26,6 @@ export class AuthProvider extends Component {
     const uid = window.localStorage.getItem('tribe_uid');
     const username = window.localStorage.getItem('tribe_username');
   
-
     if (uid && username) {
       this.fetchUserData(uid)
     }
@@ -89,7 +89,11 @@ export class AuthProvider extends Component {
       .signOut()
       .then(
         () => {
-          return <Redirect to="/" />;
+          
+          window.localStorage.removeItem('tribe_uid');
+          window.localStorage.removeItem('tribe_username');
+          window.location.href = "/";
+
         },
         function(error) {
           alert('error');
