@@ -23,7 +23,7 @@ export default class Headline extends Component {
     const uid = window.localStorage.getItem("tribe_uid");
     firebase
       .database()
-      .ref(`/users/${uid}/headline`)
+      .ref(`/users/${uid}/`)
       .once("value")
       .then(snapshot => {
         const users = snapshot.val();
