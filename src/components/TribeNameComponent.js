@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import TribeName from './TribeName';
-import Headline from './Headline';
 import firebase from '../firebase';
 
 export default class TribeNameComponent extends Component {

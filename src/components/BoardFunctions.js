@@ -49,13 +49,13 @@ export default class BoardFunctions extends Component {
     databaseSet[`/users/${uid}/profilecomments/${commentId}/date`] = Date.now();
 
     databaseSet[
-      `/users/otheruser/commentsreceived/${commentId}/comment`
+      `/users/${uid}/commentsreceived/${commentId}/comment`
     ] = this.state.comment;
     databaseSet[
-      `/users/otheruser/commentsreceived/${commentId}/author`
+      `/users/${uid}/commentsreceived/${commentId}/author`
     ] = username;
     databaseSet[
-      `/users/otheruser/commentsreceived/${commentId}/date`
+      `/users/${uid}/commentsreceived/${commentId}/date`
     ] = Date.now();
     //must add endpoint for other user page
 

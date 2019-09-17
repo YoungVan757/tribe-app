@@ -45,8 +45,6 @@ export default class ProfileImg extends Component {
   };
   handleUpload() {
     const { image } = this.state;
-    const users = {};
-    const img = this.state.image;
     const uploadTask = storage()
       .ref(`images/${image.name}`)
       .put(image);

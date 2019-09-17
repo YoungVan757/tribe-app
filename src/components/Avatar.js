@@ -31,7 +31,7 @@ class Avatar extends Component {
   }
 
   render() {
-    const { user, loginError } = this.props.authContext;
+    const { user } = this.props.authContext;
     const uid = window.localStorage.getItem('tribe_uid');
     const avatar = this.state.users && this.state.users.imageurl;
 

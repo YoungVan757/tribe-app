@@ -51,9 +51,6 @@ class Homepage extends Component {
           Log In
         </button>
 
-        <Or color="darkorange" padTop={100}>
-          Or
-        </Or>
         <Or color="purple">Or</Or>
 
         <Link to="/signup" className="signup__link">

@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import firebase from '../firebase';
-import { Redirect } from 'react-router-dom';
+import React, { Component } from "react";
+import firebase from "../firebase";
+import { Redirect } from "react-router-dom";
 
 export const AuthContext = React.createContext(null);
 
@@ -16,14 +16,13 @@ export class AuthProvider extends Component {
     this.actions = {
       handleLoginUser: (email, password) =>
         this.handleLoginUser(email, password),
-        handleLogoutUser: () =>
-        this.handleLogoutUser()
+      handleLogoutUser: () => this.handleLogoutUser()
     };
   }
 
   componentDidMount() {
-    const uid = window.localStorage.getItem('tribe_uid');
-    const username = window.localStorage.getItem('tribe_username');
+    const uid = window.localStorage.getItem("tribe_uid");
+    const username = window.localStorage.getItem("tribe_username");
 
     if (uid && username) {
       const user = {
@@ -38,14 +37,14 @@ export class AuthProvider extends Component {
 
   handleLoginUser(email, password) {
     if (email.length < 4) {
-      alert('Please enter an email address.');
+      alert("Please enter an email address.");
       this.setState({
         loginError: true
       });
       return;
     }
-    if (password.length < 4) {
-      alert('Please enter a password.');
+    if (password.length < 7) {
+      alert("Please enter a password.");
       this.setState({
         loginError: true
       });
@@ -63,14 +62,14 @@ export class AuthProvider extends Component {
         firebase
           .database()
           .ref(`/users/${uid}`)
-          .once('value')
+          .once("value")
           .then(whatever => {
-            console.log('THE USER ENTRY', whatever.val());
+            console.log("THE USER ENTRY", whatever.val());
 
             const { username } = whatever.val();
 
-            window.localStorage.setItem('tribe_uid', uid);
-            window.localStorage.setItem('tribe_username', username);
+            window.localStorage.setItem("tribe_uid", uid);
+            window.localStorage.setItem("tribe_username", username);
 
             const user = {
               uid,
@@ -84,23 +83,20 @@ export class AuthProvider extends Component {
 
         // SET STATE TO REDIRECT...
       })
-      .catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // ...
-      });
   }
 
   handleLogoutUser() {
-    firebase.auth().signOut().then(()=> {
-      alert('logged out!!');
-       return <Redirect to="/" />;
-    
-    }, function(error) {
-      alert('error')
-    });
-  
+    firebase
+      .auth()
+      .signOut()
+      .then(
+        () => {
+          return <Redirect to="/" />;
+        },
+        function(error) {
+          alert("error");
+        }
+      );
   }
 
   render() {

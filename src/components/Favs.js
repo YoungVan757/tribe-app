@@ -86,6 +86,7 @@ export default class Favs extends Component {
           onClick={() => this.join()}
         >
           <img
+            alt='join tribe'
             width="200"
             height="200"
             src="data:image/svg+xml;base64,

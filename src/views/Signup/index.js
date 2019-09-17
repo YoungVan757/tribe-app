@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import { WithAuth } from '../../contexts/AuthContext';
 import firebase from 'firebase';
 
-export default class Signup extends Component {
+import { Heading } from './styles';
+
+class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -50,6 +53,8 @@ export default class Signup extends Component {
             this.setState({
               shouldRedirect: true
             });
+            const { user } = this.props.authContext;
+            return <Redirect to={`/profile/${user.username}`} />
           });
 
         // Where we save any additional info about our new user..
@@ -70,15 +75,16 @@ export default class Signup extends Component {
   }
 
   render() {
-    if (this.state.shouldRedirect) {
-      return <Redirect to="/profile/van" />;
+    const { user } = this.props.authContext;
+    if (user) {
+      return <Redirect to={`/profile/${user.username}`} />;
     }
 
     return (
       <div claasName="container">
         <div className="backyard">
           <div className="flex__container">
-            <div className="heading">Sign Up</div>
+            <Heading>Sign Up</Heading>
 
             <input
               onChange={e => this.setState({ username: e.target.value })}
@@ -115,3 +121,4 @@ export default class Signup extends Component {
     );
   }
 }
+export default WithAuth(Signup);

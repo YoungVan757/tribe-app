@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
 
 // ART/VISUAL/3D SUBSUBSUBCATEGORY
 import Fashion from './Art/Visual/ThreeD/Fashion';
@@ -31,8 +30,12 @@ import BikeManufacturer from './Manufactured/Automobile/Bikes/BikeManufacturer';
 export default class Subsubsubcategory extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+
+    };
+    this.goBack = this.goBack.bind(this);
   }
+  
 
   renderSubsubsubcatagoryDetails(subSubsubcategory) {
 
@@ -103,15 +106,17 @@ export default class Subsubsubcategory extends Component {
     }
     
   }
-
+goBack(){
+  this.props.history.goBack()
+}
   render() {
     console.log('subcategory prps', this.props);
     return (
       <div>
-        <Link to={`/category/
-          ${this.props.match.params.categoryName}/
-          ${this.props.match.params.subCategory}/
-          ${this.props.match.params.subSubcategory}`}>Back</Link>
+        <button 
+          onClick={() => this.goBack()}
+          className='board__comments'
+          >Back</button>
         <h1>
           You are on{' '}
           {`/category/

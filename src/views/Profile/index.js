@@ -25,21 +25,20 @@ class Profile extends Component {
   fetchData() {
     firebase
       .database()
-      .ref('/comments/')
+      .ref('/users/')
       .once('value')
       .then(snapshot => {
-        const comments = snapshot.val();
+        const users = snapshot.val();
         this.setState({
-          comments
+          users
         });
       });
   }
 
 
   logout() {
-    const { user } = this.state;
+    const { user } = this.state.user;
     this.props.authContext.handleLogoutUser(user);
-    return<Redirect to= '/'/>;
   }
 
  

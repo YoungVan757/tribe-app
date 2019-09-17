@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
-import MessageRead from "../../components/MessageRead";
 import firebase from "firebase";
 import { WithAuth } from "../../contexts/AuthContext";
 
@@ -8,30 +7,30 @@ class Message extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      uid: '',
+      uid: "",
       users: [],
-      user:'',
+      user: "",
       message: "",
       username: ""
     };
   }
 
-    componentDidMount() {
-      this.fetchData() 
+  componentDidMount() {
+    this.fetchData();
   }
 
   fetchData() {
-      firebase
-        .database()
-        .ref('/users')
-        .once("value")
-        .then(snapshot => {
-          const users = snapshot.val();
-          this.setState({
-            users
-          });
+    firebase
+      .database()
+      .ref("/users")
+      .once("value")
+      .then(snapshot => {
+        const users = snapshot.val();
+        this.setState({
+          users
         });
-    }
+      });
+  }
 
   sendMessage() {
     const database = firebase.database();
@@ -77,27 +76,53 @@ class Message extends Component {
         this.fetchData();
       });
   }
-
   render() {
     const { user } = this.props.authContext;
-    if (!user) return <Redirect to="/" />;
+    const search = document.getElementById('search');
 
+    const searchUsers = async searchText => {
+      const res = await fetch(this.state.users);
+      const users = await res.fetch();
+
+      let matches = users.filter(state => {
+        const regex = new RegExp(`^${searchText}`, 'gi')
+        return users.username.match(regex);
+      });
+console.log(matches);
+
+    };
+
+    
+
+    search.addEventListener('input', () => searchUsers(search.value))
+    if (!user) return <Redirect to="/" />;
     return (
       <div className="container">
         <Link to="/messages" className="message__new">
           messages
         </Link>
         <div className="message__body">
+          <div className="message__read">
+            To:
+            <input
+              id="search"
+              onChange={e => this.setState({ username: e.target.value })}
+              type="text"
+              placeholder="type username"
+              className="board__comments"
+            />
+            <div id='match'></div>
+          </div>
           <div className="message__textboxes">
-            <MessageRead />
             <div className="message__line" />
             <input
               onChange={e => this.setState({ message: e.target.value })}
               type="text"
               className="message__write"
-              placeholder="type"
+              placeholder="type message"
             />
           </div>
+
           <div className="message__header">
             <div className="message__header--info">
               <br />

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import firebase from '../firebase';
 
 export default class TribeImg extends Component {
@@ -37,8 +38,8 @@ export default class TribeImg extends Component {
             const singleTribe = this.state.users[k];
             return (
               <div className={this.props.classN}>
-              
-               <img src={singleTribe.url}></img> 
+              <Link to={`${this.props.match.params.subSubsubcategory}`}>
+               <img alt='tribe' src={singleTribe.url}></img> </Link>
               </div>
             );
           });

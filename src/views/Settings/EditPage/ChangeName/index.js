@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Input from '../../../../components/Input';
-import {Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import firebase from '../../../../firebase';
 
 export default class ChangeName extends Component {
