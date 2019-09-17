@@ -1,41 +1,29 @@
-import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
-import firebase from "firebase";
-import { WithAuth } from "../../contexts/AuthContext";
+import React, { Component } from 'react';
+import { Link, Redirect } from 'react-router-dom';
+import firebase from 'firebase';
+import { WithAuth } from '../../contexts/AuthContext';
 
 class Message extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      uid: "",
-      users: [],
-      user: "",
-      message: "",
-      username: ""
+      message: '',
+      otherUser: {}
     };
   }
 
   componentDidMount() {
-    this.fetchData();
+    // this.fetchData();
   }
 
   fetchData() {
-    firebase
-      .database()
-      .ref("/users")
-      .once("value")
-      .then(snapshot => {
-        const users = snapshot.val();
-        this.setState({
-          users
-        });
-      });
+
   }
 
   sendMessage() {
     const database = firebase.database();
     const uniqueId = Date.now();
-    const uid = window.localStorage.getItem("tribe_uid");
+    const uid = window.localStorage.getItem('tribe_uid');
     const users = this.state.users;
     const otheruser = this.state.uniqueId;
 
@@ -76,25 +64,44 @@ class Message extends Component {
         this.fetchData();
       });
   }
+
+  setOtherUser(username) {
+    const { allUsers } = this.props.authContext;
+
+
+    let foundUser = [];
+    allUsers && Object.keys(allUsers).map(userId =>  {
+      const singleUser = allUsers[userId];
+      console.log("single user", singleUser)
+
+      if ( singleUser.username.toUpperCase() === username.toUpperCase() ) {
+        singleUser.uid = userId;
+        foundUser.push(singleUser)
+      }
+    });
+
+
+    this.setState({
+      otherUser: foundUser.length && foundUser[0] || []
+    })
+
+  }
+
+  renderAllUsers() {
+    const { allUsers } = this.props.authContext;
+
+    return (
+      allUsers &&
+      Object.keys(allUsers).map(user => {
+        const username = allUsers[user].username;
+        return <option value={username} />;
+      })
+    );
+  }
+
   render() {
     const { user } = this.props.authContext;
-    const search = document.getElementById('search');
 
-//     const searchUsers = async searchText => {
-//       const res = await fetch(this.state.users);
-//       const users = await res.fetch();
-
-//       let matches = users.filter(state => {
-//         const regex = new RegExp(`^${searchText}`, 'gi')
-//         return users.username.match(regex);
-//       });
-// console.log(matches);
-
-//     };
-
-    
-    // search.addEventListener('input', () => searchUsers(search.value))
-    if (!user) return <Redirect to="/" />;
     return (
       <div className="container">
         <Link to="/messages" className="message__new">
@@ -104,13 +111,15 @@ class Message extends Component {
           <div className="message__read">
             To:
             <input
+              list="users"
               id="search"
-              onChange={e => this.setState({ username: e.target.value })}
+              onChange={e => this.setOtherUser(e.target.value)}
               type="text"
-              placeholder="type username"
+              placeholder="type username!!"
               className="board__comments"
             />
-            <div id='match'></div>
+            <datalist id="users">{this.renderAllUsers()}</datalist>
+            <div id="match"></div>
           </div>
           <div className="message__textboxes">
             <div className="message__line" />

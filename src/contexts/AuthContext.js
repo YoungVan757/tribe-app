@@ -18,17 +18,31 @@ export class AuthProvider extends Component {
       handleLoginUser: (email, password) =>
         this.handleLoginUser(email, password),
       handleLogoutUser: () => this.handleLogoutUser(),
-      fetchUserData: (uid) => this.fetchUserData(uid)
+      fetchUserData: uid => this.fetchUserData(uid)
     };
   }
 
   componentDidMount() {
+    this.getAllUsers();
+
     const uid = window.localStorage.getItem('tribe_uid');
     const username = window.localStorage.getItem('tribe_username');
-  
+
     if (uid && username) {
-      this.fetchUserData(uid)
+      this.fetchUserData(uid);
     }
+  }
+
+  getAllUsers() {
+    firebase
+      .database()
+      .ref(`/users/`)
+      .once('value')
+      .then(allUsers => {
+        this.setState({
+          allUsers: allUsers.val()
+        });
+      });
   }
 
   handleLoginUser(email, password) {
@@ -89,11 +103,9 @@ export class AuthProvider extends Component {
       .signOut()
       .then(
         () => {
-          
           window.localStorage.removeItem('tribe_uid');
           window.localStorage.removeItem('tribe_username');
-          window.location.href = "/";
-
+          window.location.href = '/';
         },
         function(error) {
           alert('error');
@@ -102,11 +114,10 @@ export class AuthProvider extends Component {
   }
 
   fetchUserData(userId = false) {
-
     let userIdCopy = null;
 
-    if ( userId ) {
-      userIdCopy = userId
+    if (userId) {
+      userIdCopy = userId;
     } else {
       const { user } = this.state;
       userIdCopy = user.uid;
