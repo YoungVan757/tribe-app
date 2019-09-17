@@ -38,8 +38,8 @@ export default class TribeImg extends Component {
             const singleTribe = this.state.users[k];
             return (
               <div className={this.props.classN}>
-              <Link to={`${this.props.match.params.subSubsubcategory}`}>
-               <img alt='tribe' src={singleTribe.url}></img> </Link>
+              {/* <Link to={`${this.props.match.params.subSubsubcategory}`}> */}
+               <img alt='tribe' src={singleTribe.url}></img> 
               </div>
             );
           });
