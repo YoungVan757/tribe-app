@@ -37,7 +37,7 @@ export default class TribeImg extends Component {
           Object.keys(this.state.users).map(k => {
             const singleTribe = this.state.users[k];
             return (
-              <div className={this.props.classN}>
+              <div key={k} className={this.props.classN}>
               {/* <Link to={`${this.props.match.params.subSubsubcategory}`}> */}
                <img alt='tribe' src={singleTribe.url}></img> 
               </div>

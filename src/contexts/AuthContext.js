@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import firebase from "../firebase";
-import { Redirect } from "react-router-dom";
+import React, { Component } from 'react';
+import firebase from '../firebase';
+import { Redirect } from 'react-router-dom';
 
 export const AuthContext = React.createContext(null);
 
@@ -9,6 +9,7 @@ export class AuthProvider extends Component {
     super(props);
 
     this.state = {
+      allUsers: [],
       user: false,
       loginError: false
     };
@@ -16,35 +17,30 @@ export class AuthProvider extends Component {
     this.actions = {
       handleLoginUser: (email, password) =>
         this.handleLoginUser(email, password),
-      handleLogoutUser: () => this.handleLogoutUser()
+      handleLogoutUser: () => this.handleLogoutUser(),
+      fetchUserData: (uid) => this.fetchUserData(uid)
     };
   }
 
   componentDidMount() {
-    const uid = window.localStorage.getItem("tribe_uid");
-    const username = window.localStorage.getItem("tribe_username");
-
+    const uid = window.localStorage.getItem('tribe_uid');
+    const username = window.localStorage.getItem('tribe_username');
+  
     if (uid && username) {
-      const user = {
-        uid,
-        username
-      };
-      this.setState({
-        user
-      });
+      this.fetchUserData(uid)
     }
   }
 
   handleLoginUser(email, password) {
     if (email.length < 4) {
-      alert("Please enter an email address.");
+      alert('Please enter an email address.');
       this.setState({
         loginError: true
       });
       return;
     }
     if (password.length < 7) {
-      alert("Please enter a password.");
+      alert('Please enter a password.');
       this.setState({
         loginError: true
       });
@@ -62,18 +58,20 @@ export class AuthProvider extends Component {
         firebase
           .database()
           .ref(`/users/${uid}`)
-          .once("value")
+          .once('value')
           .then(whatever => {
-            console.log("THE USER ENTRY", whatever.val());
+            console.log('THE USER ENTRY', whatever.val());
 
+            const userFromDB = whatever.val();
             const { username } = whatever.val();
 
-            window.localStorage.setItem("tribe_uid", uid);
-            window.localStorage.setItem("tribe_username", username);
+            window.localStorage.setItem('tribe_uid', uid);
+            window.localStorage.setItem('tribe_username', username);
 
             const user = {
               uid,
-              username
+              username,
+              ...userFromDB
             };
 
             this.setState({
@@ -82,7 +80,7 @@ export class AuthProvider extends Component {
           });
 
         // SET STATE TO REDIRECT...
-      })
+      });
   }
 
   handleLogoutUser() {
@@ -91,12 +89,45 @@ export class AuthProvider extends Component {
       .signOut()
       .then(
         () => {
-          return <Redirect to="/" />;
+          
+          window.localStorage.removeItem('tribe_uid');
+          window.localStorage.removeItem('tribe_username');
+          window.location.href = "/";
+
         },
         function(error) {
-          alert("error");
+          alert('error');
         }
       );
+  }
+
+  fetchUserData(userId = false) {
+
+    let userIdCopy = null;
+
+    if ( userId ) {
+      userIdCopy = userId
+    } else {
+      const { user } = this.state;
+      userIdCopy = user.uid;
+    }
+
+    firebase
+      .database()
+      .ref(`/users/${userIdCopy}/`)
+      .once('value')
+      .then(snapshot => {
+        const userData = snapshot.val();
+
+        const refreshedUserObject = {
+          uid: userIdCopy,
+          ...userData
+        };
+
+        this.setState({
+          user: refreshedUserObject
+        });
+      });
   }
 
   render() {

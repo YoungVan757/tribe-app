@@ -80,21 +80,20 @@ class Message extends Component {
     const { user } = this.props.authContext;
     const search = document.getElementById('search');
 
-    const searchUsers = async searchText => {
-      const res = await fetch(this.state.users);
-      const users = await res.fetch();
+//     const searchUsers = async searchText => {
+//       const res = await fetch(this.state.users);
+//       const users = await res.fetch();
 
-      let matches = users.filter(state => {
-        const regex = new RegExp(`^${searchText}`, 'gi')
-        return users.username.match(regex);
-      });
-console.log(matches);
+//       let matches = users.filter(state => {
+//         const regex = new RegExp(`^${searchText}`, 'gi')
+//         return users.username.match(regex);
+//       });
+// console.log(matches);
 
-    };
+//     };
 
     
-
-    search.addEventListener('input', () => searchUsers(search.value))
+    // search.addEventListener('input', () => searchUsers(search.value))
     if (!user) return <Redirect to="/" />;
     return (
       <div className="container">
