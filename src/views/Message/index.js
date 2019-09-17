@@ -21,47 +21,36 @@ class Message extends Component {
   }
 
   sendMessage() {
+
+    const { user } = this.props.authContext;
+    const { otherUser, message }  = this.state;
+
     const database = firebase.database();
     const uniqueId = Date.now();
-    const uid = window.localStorage.getItem('tribe_uid');
-    const users = this.state.users;
-    const otheruser = this.state.uniqueId;
-
     const databaseUpdates = {};
-    // SENDING MESSAGES..
 
-    // 1. Who am i?
-    // 2. Who am i sending a message to?
-    // 3. What's the message?
-    // 4. When am I sending it (date)?
 
-    databaseUpdates[
-      `/users/${uid}/messages/${uniqueId}/message`
-    ] = this.state.message;
-    databaseUpdates[`/users/${uid}/messages/${uniqueId}/sender/`] = uid;
-    databaseUpdates[
-      `/users/${otheruser.username}/messages/${uniqueId}/recipient/`
-    ] = this.state.username;
-    databaseUpdates[`/users/${uid}/messages/${uniqueId}/date/`] = Date.now();
+    const messageObj = {
+      id: uniqueId,
+      senderId: user.uid,
+      senderUsername: user.username,
+      receiverId: otherUser.uid,
+      receiverUsername: otherUser.username,
+      message: message
+    }
 
-    databaseUpdates[
-      `/users/${users.username}/messages/${uniqueId}/message`
-    ] = this.state.message;
-    databaseUpdates[
-      `/users/${users.username}/messages/${uniqueId}/sender/`
-    ] = uid;
-    databaseUpdates[
-      `/users/${otheruser.username}/messages/${uniqueId}/recipient/`
-    ] = this.state.username;
-    databaseUpdates[
-      `/users/${users.username}/messages/${uniqueId}/date/`
-    ] = Date.now();
+    // SAVE FOR CURRENT USER
+    databaseUpdates[`/users/${user.uid}/messages/${uniqueId}/`] = messageObj
+
+    // SAVE FOR OTHER USER
+    databaseUpdates[`/users/${otherUser.uid}/messages/${uniqueId}/`] = messageObj
+
 
     database
       .ref()
       .update(databaseUpdates)
       .then(() => {
-        this.fetchData();
+        // this.fetchData();
       });
   }
 
@@ -134,7 +123,7 @@ class Message extends Component {
           <div className="message__header">
             <div className="message__header--info">
               <br />
-              <Link to="/messages">
+              {/* <Link to="/messages"> */}
                 <button
                   onClick={() => this.sendMessage()}
                   className="message__header--button"
@@ -146,7 +135,7 @@ class Message extends Component {
                     src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMCAzdjE4aDI0di0xOGgtMjR6bTYuNjIzIDcuOTI5bC00LjYyMyA1LjcxMnYtOS40NThsNC42MjMgMy43NDZ6bS00LjE0MS01LjkyOWgxOS4wMzVsLTkuNTE3IDcuNzEzLTkuNTE4LTcuNzEzem01LjY5NCA3LjE4OGwzLjgyNCAzLjA5OSAzLjgzLTMuMTA0IDUuNjEyIDYuODE3aC0xOC43NzlsNS41MTMtNi44MTJ6bTkuMjA4LTEuMjY0bDQuNjE2LTMuNzQxdjkuMzQ4bC00LjYxNi01LjYwN3oiLz48L3N2Zz4="
                   />
                 </button>
-              </Link>
+              {/* </Link> */}
             </div>
           </div>
         </div>
