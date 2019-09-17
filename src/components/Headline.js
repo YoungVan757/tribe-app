@@ -1,43 +1,24 @@
 import React, { Component } from "react";
 import firebase from "../firebase";
 
-export default class Headline extends Component {
+import { WithAuth } from '../contexts/AuthContext';
+
+class Headline extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: false,
-      users: [],
-      uid: "",
       headline: "",
       on: ""
     };
     this.editHeadline = this.editHeadline.bind(this);
-    // this.renderHeadline = this.renderHeadline.bind(this);
-  }
-
-  componentDidMount() {
-    this.fetchData();
-  }
-
-  fetchData() {
-    const uid = window.localStorage.getItem("tribe_uid");
-    firebase
-      .database()
-      .ref(`/users/${uid}/headline`)
-      .once("value")
-      .then(snapshot => {
-        const users = snapshot.val();
-        this.setState({
-          users
-        });
-      });
   }
 
   setHeadline() {
-    const uid = window.localStorage.getItem("tribe_uid");
 
+    const { user , fetchUserData} = this.props.authContext;
+    const uid = user && user.uid;
+    
     const databaseSet = {};
-
     databaseSet[`/users/${uid}/headline`] = this.state.headline;
 
     firebase
@@ -45,21 +26,24 @@ export default class Headline extends Component {
       .ref()
       .update(databaseSet)
       .then(() => {
-        this.fetchData();
+        fetchUserData();
       });
+
     this.setState({
-      on: !this.state.on
+      on: false
     });
   }
 
   editHeadline() {
     this.setState({
-      on: !this.state.on
+      on: true
     });
   }
 
+
   render() {
-    const headline = this.state.on ? "" : this.state.users && this.state.uid.headline;
+
+    const headline = this.props.authContext.user && this.props.authContext.user.headline;
 
     return (
       <div className="headline">
@@ -86,3 +70,6 @@ export default class Headline extends Component {
     );
   }
 }
+
+
+export default WithAuth(Headline);
