@@ -97,8 +97,8 @@ export default class CommentBox extends Component {
           <div className="comment__box">
             <div> {singleComment.comment} </div>
             <Avatar classN="user__img" />
-            <Arrows />
-            <Flag />
+            {/* <Arrows />
+            <Flag /> */}
             <Trash deleteComment={() => this.deleteComment(k)} />
           </div>
         );
