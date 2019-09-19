@@ -196,12 +196,12 @@ export default class Subsubcategory extends Component {
     console.log('subcategory prps', this.props);
     return (
       <div>
-        <h1>
+        {/* <h1>
           You are on{' '}
           {`/category/${this.props.match.params.categoryName}/
           ${this.props.match.params.subCategory}/
           ${this.props.match.params.subSubcategory}`}{' '} Page
-        </h1>
+        </h1> */}
         {this.renderSubsubcatagoryDetails(this.props.match.params.subSubcategory)}
       </div>
     );

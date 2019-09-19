@@ -42,8 +42,8 @@ export default class Category extends Component {
   render() {
     return (
       <div>
-        <label>/category/index.js</label>
-        <h1>The {this.props.match.params.categoryName} Category Page </h1>
+        {/* <label>/category/index.js</label>
+        <h1>The {this.props.match.params.categoryName} Category Page </h1> */}
         {this.renderCategoryDetails(this.props.match.params.categoryName)}
       </div>
     );

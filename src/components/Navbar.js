@@ -19,7 +19,6 @@ class Navbar extends Component {
             Catagories
         </Link>
         <button 
-            style={{display:this.state.on ? 'none' : 'block'}}
             className="board__comments"
             onClick={() => this.props.authContext.handleLogoutUser()}>
             Log out
