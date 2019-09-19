@@ -35,6 +35,12 @@ import DataSandBox from './views/datasandbox';
 import { jsx, css } from '@emotion/core'
 
 class App extends Component {
+  constructor(props) {
+    super (props) ;
+    this.state={
+      uid: ''
+    }
+  }
   render() {
     const style = css`
     background-color: deeppink;
