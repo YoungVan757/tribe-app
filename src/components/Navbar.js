@@ -16,8 +16,11 @@ class Navbar extends Component {
             Catagories
         </Link>
         <button 
+          
             className="board__comments"
-            onClick={() => this.props.authContext.handleLogoutUser()}>Log out</button>
+            onClick={() => this.props.authContext.handleLogoutUser()}>
+            Log out
+        </button>
         <Link
           to="/profile/:username"
           className="explore"

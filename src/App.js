@@ -39,10 +39,11 @@ class App extends Component {
     const style = css`
     background-color: deeppink;
     `
+    const nada = (this.state.uid === true ? 'flex' : 'none' );
     return (
       <div css={style} className="App">
         <Router>
-        <Navbar />
+        <Navbar display={nada}/>
           {/* <ul>
             <li>
               <Link to="/sandbox">Data Sandbox</Link>
