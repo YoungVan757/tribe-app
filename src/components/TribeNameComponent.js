@@ -30,8 +30,7 @@ export default class TribeNameComponent extends Component {
         return (
             <div className="name__container">
                 {this.props.tribeName} <br/>
-               <span>{this.props.headLine} <br/>
-                {this.state.members.length} members so far</span> 
+               <span>{this.props.headLine} <br/></span> 
             </div>
         );
     }

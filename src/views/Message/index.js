@@ -12,14 +12,6 @@ class Message extends Component {
     };
   }
 
-  componentDidMount() {
-    // this.fetchData();
-  }
-
-  fetchData() {
-
-  }
-
   sendMessage() {
 
     const { user } = this.props.authContext;
@@ -50,7 +42,6 @@ class Message extends Component {
       .ref()
       .update(databaseUpdates)
       .then(() => {
-        // this.fetchData();
       });
   }
 
@@ -93,6 +84,7 @@ class Message extends Component {
 
     return (
       <div className="container">
+      <div className="backyard"> 
         <Link to="/messages" className="message__new">
           messages
         </Link>
@@ -123,7 +115,7 @@ class Message extends Component {
           <div className="message__header">
             <div className="message__header--info">
               <br />
-              {/* <Link to="/messages"> */}
+              <Link to="/messages">
                 <button
                   onClick={() => this.sendMessage()}
                   className="message__header--button"
@@ -135,11 +127,11 @@ class Message extends Component {
                     src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMCAzdjE4aDI0di0xOGgtMjR6bTYuNjIzIDcuOTI5bC00LjYyMyA1LjcxMnYtOS40NThsNC42MjMgMy43NDZ6bS00LjE0MS01LjkyOWgxOS4wMzVsLTkuNTE3IDcuNzEzLTkuNTE4LTcuNzEzem01LjY5NCA3LjE4OGwzLjgyNCAzLjA5OSAzLjgzLTMuMTA0IDUuNjEyIDYuODE3aC0xOC43NzlsNS41MTMtNi44MTJ6bTkuMjA4LTEuMjY0bDQuNjE2LTMuNzQxdjkuMzQ4bC00LjYxNi01LjYwN3oiLz48L3N2Zz4="
                   />
                 </button>
-              {/* </Link> */}
+              </Link>
             </div>
           </div>
         </div>
-      </div>
+      </div></div>
     );
   }
 }

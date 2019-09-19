@@ -43,7 +43,7 @@ class App extends Component {
       <div css={style} className="App">
         <Router>
         <Navbar />
-          <ul>
+          {/* <ul>
             <li>
               <Link to="/sandbox">Data Sandbox</Link>
             </li>
@@ -77,7 +77,7 @@ class App extends Component {
             <li>
               <Link to="/tribes">Tribes</Link>
             </li>
-          </ul>
+          </ul> */}
 
           <Route exact path="/sandbox" component={DataSandBox} />
           <Route exact path="/" component={Homepage} />

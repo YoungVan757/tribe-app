@@ -117,14 +117,14 @@ goBack(){
           onClick={() => this.goBack()}
           className='board__comments'
           >Back</button>
-        <h1>
+        {/* <h1>
           You are on{' '}
           {`/category/
           ${this.props.match.params.categoryName}/
           ${this.props.match.params.subCategory}/
           ${this.props.match.params.subSubcategory}/
           ${this.props.match.params.subSubsubcategory}`} Page
-        </h1>
+        </h1> */}
         {this.renderSubsubsubcatagoryDetails(this.props.match.params.subSubsubcategory)}
       </div>
     );

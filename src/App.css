@@ -199,6 +199,14 @@
   text-align: right;
 }
 
+.explore {
+  font-size: 44px;
+  text-decoration: none;
+  font-family: Helvetica;
+  font-weight: 900;
+  color: black;
+}
+
 
 /* MARGINS */
 .mt-small {
@@ -632,7 +640,7 @@
 
 .comment__input {
   display: flex;
-  height: 25vh;
+  height: 20vh;
   width: 90%;
   border: 10px solid gold;
 }

@@ -14,8 +14,6 @@ class Profile extends Component {
       user: false,
       testName: 'Bob'
     };
-
-    this.logout = this.logout.bind(this);
   }
 
   componentDidMount() {
@@ -35,14 +33,6 @@ class Profile extends Component {
       });
   }
 
-
-  logout() {
-    const { user } = this.state.user;
-    this.props.authContext.handleLogoutUser(user);
-  }
-
- 
-
   render() {
     const { user } = this.props.authContext;
     if (!user) {
@@ -56,7 +46,6 @@ class Profile extends Component {
         </div>
         <Tribe />
         <Board />
-        <button onClick={() => this.logout()}>Log out</button>
       </div>
     );
   }

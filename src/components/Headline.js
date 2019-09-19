@@ -61,6 +61,7 @@ class Headline extends Component {
           className="comment__input"
         />
         <button
+          className='board__comments'
           style={{ display: this.state.on ? "block" : "none" }}
           onClick={() => this.setHeadline()}
         >
