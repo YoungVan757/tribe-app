@@ -35,7 +35,7 @@ export default class Subsubsubsubcategory extends Component {
     console.log('subcategory prps', this.props);
     return (
       <div>
-        <h1>
+        {/* <h1>
           You are on{' '}
           {`/category/
           ${this.props.match.params.categoryName}/
@@ -43,9 +43,9 @@ export default class Subsubsubsubcategory extends Component {
           ${this.props.match.params.subSubcategory}/
           ${this.props.match.params.subSubsubcategory}/
           ${this.props.match.params.subSubsubsubcategory}`}{' '} Page
-        
+        </h1> */}
         {this.renderSubsubsubsubcatagoryDetails(this.props.match.params.subSubsubsubcategory)}
-    </h1>  </div>
+      </div>
     );
   }
 }
