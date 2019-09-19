@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, } from 'react-router-dom';
 import './App.css';
 
 import Navbar from './components/Navbar';
@@ -35,13 +35,11 @@ import DataSandBox from './views/datasandbox';
 import { jsx, css } from '@emotion/core'
 
 class App extends Component {
- 
-  }
   render() {
     const style = css`
     background-color: deeppink;
     `
-    const nada = (this.state.uid === true ? 'flex' : 'none' );
+    const nada = this.props.authContext.user && 'none'
     return (
       <div css={style} className="App">
         <Router>
