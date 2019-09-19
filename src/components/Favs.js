@@ -5,7 +5,7 @@ export default class Favs extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      joined: false,
+      joined: '',
       tribes: []
     };
     this.join = this.join.bind(this);
