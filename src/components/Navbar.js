@@ -5,6 +5,11 @@ import { WithAuth } from '../contexts/AuthContext'
 
 class Navbar extends Component {
   render() {
+    const { user } = this.props.authContext;
+    if (!user) {
+      return '';
+    }
+
     return (
       <div className="navbar">
         <Link to="/categories" className="explore">

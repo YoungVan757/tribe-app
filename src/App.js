@@ -39,11 +39,10 @@ class App extends Component {
     const style = css`
     background-color: deeppink;
     `
-    const nada = this.props.authContext.user && 'none'
     return (
       <div css={style} className="App">
         <Router>
-        <Navbar display={nada}/>
+        <Navbar />
           {/* <ul>
             <li>
               <Link to="/sandbox">Data Sandbox</Link>
