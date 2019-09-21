@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+// ART/VISUAL/3D/FASHION/RAILCAR SUBSUBSUBSUBCATEGORY
+
+
 // GEOGRAPHY/COUNTRY/STATE-PROVINCE/CITY SUBSUBSUBSUBCATEGORY
 import Artists from './Geography/GeoCountry/StateProvince/City/Artists';
 import Boutiques from './Geography/GeoCountry/StateProvince/City/Boutiques';
@@ -13,6 +16,9 @@ export default class Subsubsubsubcategory extends Component {
   }
 
   renderSubsubsubsubcatagoryDetails(subSubsubsubcategory) {
+
+    // ART / VISUAL / 3D / FASHION
+
 
     // GEOGRAPHY / COUNTRY / STATE-PROVINCE / CITY
 

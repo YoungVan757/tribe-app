@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import Arrows from '../components/Arrows';
 import Trash from '../components/Trash';
-import Flag from '../components/Flag';
 import Avatar from '../components/Avatar';
 import firebase from '../firebase';
 

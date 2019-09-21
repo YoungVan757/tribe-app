@@ -10,10 +10,30 @@ import Grouper from './Art/Music/ArtistGroup/Grouper';
 import HopeSandoval from './Art/Music/ArtistGroup/HopeSandoval';
 import Dame from './Art/Music/ArtistGroup/Dame';
 import JulieDoiron from './Art/Music/ArtistGroup/JulieDoiron';
-// import HipHop from './Art/Music/ArtistGroup/HipHop';
-// import Pop from './Art/Music/ArtistGroup/Pop';
-// import Jazz from './Art/Music/ArtistGroup/Jazz';
-// import Blues from './Art/Music/ArtistGroup/Blues';
+
+// // ART/MUSIC/SONG SUBSUBSUBCATEGORY
+import OogumBoogum from './Art/Music/Song/OogumBoogum';
+
+// // ART/MUSIC/ALBUM SUBSUBSUBCATEGORY
+import Thriller from './Art/Music/Album/Thriller';
+
+// // ART/CINEMA/ACTOR SUBSUBSUBCATEGORY
+import JenniferChastain from './Art/Cinema/Actor/JenniferChastain';
+
+// // ART/CINEMA/DIRECTOR SUBSUBSUBCATEGORY
+import MichaelHaneke from './Art/Cinema/Director/MichaelHaneke';
+
+// // ART/CINEMA/FILM SUBSUBSUBCATEGORY
+import CityOfGod from './Art/Cinema/Film/CityOfGod';
+
+// // ART/CINEMA/SERIES SUBSUBSUBCATEGORY
+import PeteAndPete from './Art/Cinema/Series/PeteAndPete';
+
+// // ART/LITERATURE/AUTHOR SUBSUBSUBCATEGORY
+import KurtVonnegut from './Art/Literature/Author/KurtVonnegut';
+
+// // ART/LITERATURE/BOOK SUBSUBSUBCATEGORY
+import Monster from './Art/Literature/Book/Monster';
 
 // GEOGRAPHY/COUNTRY/STATE-PROVINCE SUBSUBSUBCATEGORY
 import City from './Geography/GeoCountry/StateProvince/City';
@@ -69,17 +89,53 @@ export default class Subsubsubcategory extends Component {
       return <JulieDoiron />;
     }
 
-    // if (subSubsubcategory === 'pop') {
-    //   return <Pop />;
-    // }
+    // ART / MUSIC / SONG
+
+    if (subSubsubcategory === 'oogumboogum') {
+      return <OogumBoogum />;
+    }
+
+    // ART / MUSIC / ALBUM
+
+    if (subSubsubcategory === 'thriller') {
+      return <Thriller />;
+    }
     
-    // if (subSubsubcategory === 'jazz') {
-    //     return <Jazz />;
-    //   }
+    // ART / CINEMA / ACTOR
+
+    if (subSubsubcategory === 'jenniferchastain') {
+      return <JenniferChastain />;
+    }
     
-    // if (subSubsubcategory === 'blues') {
-    //   return <Blues />;
-    // }
+    // ART / CINEMA / DIRECTOR
+
+    if (subSubsubcategory === 'michaelhaneke') {
+      return <MichaelHaneke />;
+    }
+
+    // ART / CINEMA / FILM
+
+    if (subSubsubcategory === 'cityofgod') {
+      return <CityOfGod />;
+    }
+
+    // ART / CINEMA / SERIES
+
+    if (subSubsubcategory === 'peteandpete') {
+      return <PeteAndPete />;
+    }
+
+    // ART / LITERATURE / AUTHOR
+
+    if (subSubsubcategory === 'kurtvonnegut') {
+      return <KurtVonnegut />;
+    }
+
+    // ART / LITERATURE / BOOK
+
+    if (subSubsubcategory === 'monster') {
+      return <Monster />;
+    }
 
     // GEOGRAPHY / COUNTRY / STATE-PROVINCE
 

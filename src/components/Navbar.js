@@ -5,7 +5,6 @@ import { WithAuth } from '../contexts/AuthContext'
 
 class Navbar extends Component {
   render() {
-    const { user } = this.props.authContext;
     
 
     return (

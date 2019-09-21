@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, } from 'react-router-dom';
 import firebase from 'firebase';
 import { WithAuth } from '../../contexts/AuthContext';
 
@@ -80,7 +80,6 @@ class Message extends Component {
   }
 
   render() {
-    const { user } = this.props.authContext;
 
     return (
       <div className="container">

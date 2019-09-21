@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import firebase from '../firebase';
-import { Redirect } from 'react-router-dom';
 
 export const AuthContext = React.createContext(null);
 
