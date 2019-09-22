@@ -35,6 +35,9 @@ import KurtVonnegut from './Art/Literature/Author/KurtVonnegut';
 // // ART/LITERATURE/BOOK SUBSUBSUBCATEGORY
 import Monster from './Art/Literature/Book/Monster';
 
+// // SPORTS/SKATEBOARDING/SKATER SUBSUBSUBCATEGORY
+import BrianAnderson from './Sports/Skateboarding/Skater/BrianAnderson';
+
 // GEOGRAPHY/COUNTRY/STATE-PROVINCE SUBSUBSUBCATEGORY
 import City from './Geography/GeoCountry/StateProvince/City';
 
@@ -135,6 +138,12 @@ export default class Subsubsubcategory extends Component {
 
     if (subSubsubcategory === 'monster') {
       return <Monster />;
+    }
+
+    // SPORTS / SKATEBOARDING / SKATER
+
+    if (subSubsubcategory === 'briananderson') {
+      return <BrianAnderson />;
     }
 
     // GEOGRAPHY / COUNTRY / STATE-PROVINCE

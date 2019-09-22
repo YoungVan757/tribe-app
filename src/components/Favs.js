@@ -43,7 +43,6 @@ export default class Favs extends Component {
 
       join[`/users/${uid}/tribes/${tribeName}/joined`] = true;
       join[`/users/${uid}/tribes/${tribeName}/date`] = Date.now();
-      join[`/users/${uid}/tribes/${tribeName}/url`] = this.state.tribes.url;
 
       firebase
         .database()
